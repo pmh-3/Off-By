@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import Quiz from './Quiz';
+import Slider from './Slider';
 
 function Home() {
 
@@ -7,8 +8,8 @@ function Home() {
     <>
     <div className='title'>
         <div>OFF BY</div>
-	</div>
-      <a href="/Quiz">
+	  </div>
+      <a href="/Slider">
         <button >Play</button>
       </a>
     </>

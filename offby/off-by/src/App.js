@@ -5,6 +5,7 @@ import Page from './Page'
 import Home from './Home';
 import Quiz from './Quiz';
 import Score from './Score';
+import Slider from './Slider';
 
 
 
@@ -12,13 +13,12 @@ const LOCALSTORAGE = 'todApp.todos'
 
 function App() {
   
-
   return (
   <>
   <div>
   <Router>
   <Route path="/" exact render={() => <Home />} />
-  <Route path="/Quiz" render={() => <Quiz />} />
+  <Route path="/Slider" render={() => <Slider />} />
   <Route path="/Score" render={() => <Score />} />
   </Router>
   </div>
