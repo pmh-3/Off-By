@@ -5,7 +5,7 @@ import Page from './Page'
 import Home from './Home';
 import Quiz from './Quiz';
 import Score from './Score';
-import Slider from './Slider';
+import Slider from './InputSlider';
 
 
 

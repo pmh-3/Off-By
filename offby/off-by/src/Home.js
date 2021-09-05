@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import Quiz from './Quiz';
-import Slider from './Slider';
+import Slider from './InputSlider';
 
 function Home() {
 

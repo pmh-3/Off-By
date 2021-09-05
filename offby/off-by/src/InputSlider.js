@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-import Input from '@material-ui/core/Input';
-import VolumeUp from '@material-ui/icons/VolumeUp';
+import { makeStyles } from '@mui/styles';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Slider from '@mui/material/Slider';
+import Input from '@mui/material/Input';
+import VolumeUp from '@mui/icons-material/VolumeUp';
 import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 
 
@@ -16,7 +16,6 @@ const useStyles = makeStyles({
     width: 42,
   },
 });
-
 
 function InputSlider() {
   const classes = useStyles();
@@ -41,11 +40,11 @@ function InputSlider() {
   return (
     <div className={classes.root}>
       <Typography id="input-slider" gutterBottom>
-        Volume
+        How cool is this?!
       </Typography>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
-          <VolumeUp />
+          
         </Grid>
         <Grid item xs>
           <Slider
@@ -75,4 +74,4 @@ function InputSlider() {
   );
 }
 
-export default Slider;
+export default InputSlider;
