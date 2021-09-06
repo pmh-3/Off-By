@@ -37,6 +37,11 @@ body {
 
 }
 
+.ansNum {
+  font-size: 20px;
+  color: #ffffff;
+}
+
 .score-section {
   display: flex;
   font-size: 24px;

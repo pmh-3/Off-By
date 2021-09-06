@@ -19,6 +19,7 @@ function App() {
   <Router>
   <Route path="/" exact render={() => <Home />} />
   <Route path="/Slider" render={() => <Slider />} />
+  <Route path="/Quiz" render={() => <Quiz />} />
   <Route path="/Score" render={() => <Score />} />
   </Router>
   </div>

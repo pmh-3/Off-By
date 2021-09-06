@@ -15,9 +15,10 @@ const useStyles = makeStyles({
   input: {
     width: 42,
   },
+
 });
 
-function InputSlider() {
+function InputSlider(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(30);
 
@@ -30,46 +31,50 @@ function InputSlider() {
   };
 
   const handleBlur = () => {
-    if (value < 0) {
-      setValue(0);
-    } else if (value > 100) {
-      setValue(100);
+    if (value < props.min) {
+      setValue(props.min);
+    } else if (value > props.max) {
+      setValue(props.max);
     }
   };
 
+
   return (
     <div className={classes.root}>
-      <Typography id="input-slider" gutterBottom>
-        How cool is this?!
-      </Typography>
+
+      <Grid container spacing={2}   container
+      direction="column"
+      justifyContent="center"
+      alignItems="center">
       <Grid container spacing={2} alignItems="center">
-        <Grid item>
-          
-        </Grid>
         <Grid item xs>
           <Slider
             value={typeof value === 'number' ? value : 0}
             onChange={handleSliderChange}
             aria-labelledby="input-slider"
-          />
-        </Grid>
-        <Grid item>
-          <Input
-            className={classes.input}
-            value={value}
-            margin="dense"
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-            inputProps={{
-              step: 10,
-              min: 0,
-              max: 100,
-              type: 'number',
-              'aria-labelledby': 'input-slider',
-            }}
+            min={props.min}
+            max={props.max}
           />
         </Grid>
       </Grid>
+          <Grid item >
+            <Input
+              className={classes.input}
+              value={value}
+              margin="dense"
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              inputProps={{
+                step: 1,
+                min: props.min,
+                max:props.max,
+                type: 'number',
+                'aria-labelledby': 'input-slider',
+              }}
+            />
+          </Grid>
+          
+        </Grid>       
     </div>
   );
 }

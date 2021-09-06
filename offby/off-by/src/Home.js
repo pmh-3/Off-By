@@ -9,7 +9,7 @@ function Home() {
     <div className='title'>
         <div>OFF BY</div>
 	  </div>
-      <a href="/Slider">
+      <a href="/Quiz">
         <button >Play</button>
       </a>
     </>

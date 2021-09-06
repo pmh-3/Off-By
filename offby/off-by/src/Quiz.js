@@ -1,8 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
-
-
-
+import Slider from './InputSlider';
 
 
 function Quiz() {
@@ -45,13 +43,11 @@ function Quiz() {
 		},
 	];
 
-   
-
-
 
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
+	const [answer, setAnswer] = useState(-1);
 
 	const handleAnswerOptionClick = (isCorrect) => {
 		if (isCorrect) {
@@ -81,11 +77,10 @@ function Quiz() {
 						</div>
 						<div className='question-text'>{questions[currentQuestion].questionText}</div>
 					</div>
-					<div className='answer-section'>
-						{questions[currentQuestion].answerOptions.map((answerOption) => (
-							<button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-						))}
-					</div>
+					<div>
+						<Slider min = {15} max = {1000} />
+						<button onClick={() => handleAnswerOptionClick(true)}></button>
+					</div>			
 				</>
 			)}
 		</div>
@@ -95,3 +90,10 @@ function Quiz() {
 
 export default Quiz;
 //<div>Question 1</div>            <a href="/Score">Done</a>
+/*
+<div className='answer-section'>
+						{questions[currentQuestion].answerOptions.map((answerOption) => (
+							<button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+						))}
+					</div>
+					*/
