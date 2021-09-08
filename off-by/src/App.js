@@ -7,8 +7,6 @@ import Quiz from './Quiz';
 import Score from './Score';
 import Slider from './InputSlider';
 
-
-
 const LOCALSTORAGE = 'todApp.todos'
 
 function App() {

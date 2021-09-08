@@ -2,6 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import Slider from './InputSlider';
 import Answer from './Answer';
+import Timer from './Timer';
 import { integerPropType } from '@mui/utils';
 import { Water } from '@mui/icons-material';
 var abs = require('math-abs' );
@@ -10,7 +11,7 @@ function Quiz() {
     const questions = [
 		{
 			questionText: 'How tall is Mt.Everest?',
-			answer: '29,032',
+			answer: '29032',
 			answerText: "Mt.Everest is 29,032 feet tall",
 			min: '1000',
 			max: '50000',
@@ -70,7 +71,7 @@ function Quiz() {
 	const [offBy, setOffBy] = useState(0);
 
 	const calcOffBy = () => {
-		let offByNum = abs(parseInt((questions[currentQuestion].answer) - parseInt(guess)))
+		var offByNum = abs(parseInt((questions[currentQuestion].answer) - parseInt(guess)));
 		offByNum = offByNum/((parseInt(questions[currentQuestion].max) - parseInt(questions[currentQuestion].min)));
 		setOffBy(((100*offByNum).toPrecision(3)));
 	}
@@ -82,8 +83,7 @@ function Quiz() {
 		const nextQuestion = currentQuestion + 1;
 		setShowAnswer(false);
 		if (nextQuestion < questions.length) {
-			setCurrentQuestion(nextQuestion);		
-				
+			setCurrentQuestion(nextQuestion);				
 		} else {		
 			setShowScore(true);
 		}
@@ -96,6 +96,11 @@ function Quiz() {
 			
 	};
 
+	const timesUp = () => {
+		calcOffBy()
+		setShowAnswer(true);
+	}
+
 	
 	let screen;
 
@@ -106,6 +111,7 @@ function Quiz() {
 	}else{
 		screen = <>
 			<div className='question-section'>
+				<Timer timesUp ={timesUp}></Timer>
 				<div className='question-count'>
 					<span>Question {currentQuestion + 1}</span>/{questions.length}
 				</div>
@@ -126,11 +132,3 @@ function Quiz() {
 }
 
 export default Quiz;
-//<div>Question 1</div>            <a href="/Score">Done</a>
-/*
-<div className='answer-section'>
-						{questions[currentQuestion].answerOptions.map((answerOption) => (
-							<button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-						))}
-					</div>
-					*/
