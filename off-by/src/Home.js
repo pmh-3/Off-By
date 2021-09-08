@@ -7,7 +7,8 @@ function Home() {
   return (
     <>
     <div className='title'>
-        <div>OFF BY</div>
+        <div>Off By</div>
+        <div>%%%%%%%%%</div>
 	  </div>
       <a href="/Quiz">
         <button >Play</button>

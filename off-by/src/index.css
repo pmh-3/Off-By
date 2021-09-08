@@ -21,11 +21,11 @@ body {
 
 .app {
   background-color: #252d4a;
-  width: 450px;
-  min-height: 200px;
+  width: 800px;
+  min-height: 800px;
   height: min-content;
   border-radius: 15px;
-  padding: 20px;
+  padding: 40px;
   box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: space-evenly;
@@ -52,6 +52,10 @@ body {
 .question-section {
   width: 100%;
   position: relative;
+  align-items: center;
+  font-size: 30px;
+  padding: 40px;
+
 }
 
 .question-count {
@@ -59,11 +63,11 @@ body {
 }
 
 .question-count span {
-  font-size: 28px;
+  font-size: 50px;
 }
 
 .question-text {
-  margin-bottom: 12px;
+  margin-bottom: 50px;
 }
 
 .timer-text {
@@ -85,16 +89,16 @@ body {
 }
 
 button {
-  width: 100%;
-  font-size: 16px;
+  width: 200px;
+  font-size: 28px;
   color: #ffffff;
   background-color: #252d4a;
   border-radius: 15px;
   display: flex;
-  padding: 5px;
+  padding: 10px;
   justify-content: flex-start;
   align-items: center;
-  border: 5px solid #234668;
+  border:7px solid #793b01;
   cursor: pointer;
 }
 
