@@ -12,14 +12,15 @@ import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 const StylishSlider = withStyles({
   root: {
     color: '#3880ff',
-    height: 2,
+    height: 5,
     padding: '15px 0',
     width: 500,
+    margin: 50,
   
   },
   thumb: {
-    height: 24,
-    width: 24,
+    height: 30,
+    width: 30,
     backgroundColor: '#fff',
     border: 'brown',
     marginLeft: 0,
@@ -29,12 +30,12 @@ const StylishSlider = withStyles({
   },
 
   track: {
-    height: 2,
+    height: 5,
     backgroundColor: '#3880ff',
     color: '#3880ff',
   },
   rail: {
-    height: 2,
+    height: 6,
     opacity: 1,
     backgroundColor: '#3880ff',
   },
@@ -43,21 +44,36 @@ const StylishSlider = withStyles({
 
 const StylishInput = withStyles({
 
+  
+
   root: {
 
-    width: 150,
-    Color: 'white',
+    width: 200,
+    color: 'white',
     fontColor: 'white',
-    height: 30,  
-    fontSize: '30px'
+    height: 60,  
+    fontSize: '60px',
+    /*
+    '& input[type=number]::-webkit-outer-spin-button': {
+      height: 30,
+      width: 100,
+      borderRadius: 0,
+      paddingLeft: 10,
+      '-webkit-appearance': 'none',
+  },
+  '& input[type=number]::-webkit-inner-spin-button': {
+    color: 'white',
+  }
+  */
+
   },
 
 })(Input);
 
 
-function InputSlider({min, max, handleGuessChange}) {
+function InputSlider({min, max, units, handleGuessChange}) {
 
-  const [value, setValue] = React.useState(30);
+  const [value, setValue] = React.useState(min);
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
@@ -77,13 +93,9 @@ function InputSlider({min, max, handleGuessChange}) {
     }
   };
 
-
   return (
-    <div className= 'slider'>
-      <Grid container  container
-      direction="column"
-      justifyContent="center"
-      alignItems="center">
+    <div className= 'mySlider'>
+
       <Grid container spacing={0} alignItems="center">
         <h3> {min} </h3>
         <Grid item>
@@ -96,21 +108,20 @@ function InputSlider({min, max, handleGuessChange}) {
         </Grid>
         <h3>{max}</h3>
       </Grid>
-          <Grid item >
-            <StylishInput         
-              value={value}
-              onChange={handleInputChange}
-              onBlur={handleBlur}
-              inputProps={{
-                step: 1,
-                min: parseInt(min),
-                max: parseInt(max),
-                type: 'number',
-              }}
-            />
-          </Grid>
-          
-        </Grid>       
+        <div className= 'guessIn'>
+          <StylishInput         
+                value={value}
+                onChange={handleInputChange}
+                onBlur={handleBlur}
+                inputProps={{
+                  step: 1,
+                  min: parseInt(min),
+                  max: parseInt(max),
+                  type: 'number',
+                }}
+              />
+              <div> {units}</div>     
+        </div>
     </div>
   );
 }

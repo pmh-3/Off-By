@@ -10,17 +10,22 @@ import Slider from './InputSlider';
 const LOCALSTORAGE = 'todApp.todos'
 
 function App() {
+
+  const [score, setScore] = useState(0);
+
+  const handleScore = (avg) => {
+      setScore(parseInt(avg))
+  }
   
   return (
   <>
-  <div>
+
   <Router>
   <Route path="/" exact render={() => <Home />} />
   <Route path="/Slider" render={() => <Slider />} />
-  <Route path="/Quiz" render={() => <Quiz />} />
-  <Route path="/Score" render={() => <Score />} />
+  <Route path="/Quiz" render={() => <Quiz handleScore ={handleScore} />} />
+  <Route path="/Score" render={() => <Score score ={score} />} />
   </Router>
-  </div>
   </>
   )
 }
