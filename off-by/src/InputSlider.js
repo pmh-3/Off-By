@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import { makeStyles, withStyles } from '@mui/styles';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -71,7 +71,14 @@ const StylishInput = withStyles({
 })(Input);
 
 
-function InputSlider({min, max, units, handleGuessChange}) {
+function InputSlider({min, max, units, step, handleGuessChange}) {
+
+  useEffect(() =>{
+    setValue(min)
+
+  },[min])
+
+
 
   const [value, setValue] = React.useState(min);
 
@@ -81,8 +88,10 @@ function InputSlider({min, max, units, handleGuessChange}) {
   };
 
   const handleInputChange = (event) => {
-    setValue(event.target.value === '' ? '' : Number(event.target.value));
-    handleGuessChange(event.target.value)
+
+      setValue(event.target.value === '' ? '' : Number(event.target.value));
+      handleGuessChange(event.target.value)
+    
   };
 
   const handleBlur = () => {
@@ -104,6 +113,7 @@ function InputSlider({min, max, units, handleGuessChange}) {
             onChange={handleSliderChange}
             min={parseInt(min)}
             max={parseInt(max)}
+            step= {step}
           />
         </Grid>
         <h3>{max}</h3>
@@ -114,7 +124,7 @@ function InputSlider({min, max, units, handleGuessChange}) {
                 onChange={handleInputChange}
                 onBlur={handleBlur}
                 inputProps={{
-                  step: 1,
+                  step: step,
                   min: parseInt(min),
                   max: parseInt(max),
                   type: 'number',

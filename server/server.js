@@ -1,47 +1,122 @@
 const express = require('express'); 
 const app = express(); 
 const port = process.env.PORT || 5000; 
+var mysql = require('mysql');
 
+
+
+var con = mysql.createConnection({
+
+    host: "localhost",
+    user: "root",
+    password: "Catchfire3@**$",
+    database: "obdb"
+});
+  
+
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+    /*
+    con.query("CREATE DATABASE obdb", function (err, result) {
+        if (err) throw err;
+        console.log("Database created");
+    });
+    var sql = "CREATE TABLE questions (question VARCHAR(255), answer VARCHAR(255))";
+    (ID, Questions, Answer, Min, Max, Units, AnswerText, Blurb, By, Step, Category)
+    */
+    ///*
+    var sql = "DROP TABLE questions";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Table deleted");
+    });
+   // 
+
+    var createtbl = "CREATE TABLE questions (`ID` INT NOT NULL AUTO_INCREMENT, `Question` LONGTEXT NULL,`Answer` FLOAT NULL,`Min` INT NULL, `Max` INT NULL,`Units` VARCHAR(50) NULL,`AnswerText` LONGTEXT NULL,`Blurb` LONGTEXT NULL,`Link` LONGTEXT NULL, `Image` LONGTEXT NULL, `By` LONGTEXT NULL,`Step` FLOAT NULL,`Category` VARCHAR(100) NULL, PRIMARY KEY (`ID`));"
+    con.query(createtbl, function (err, result) {
+        if (err) throw err;
+        console.log("Table created");
+    });
+
+    var loadData = "LOAD DATA LOCAL INFILE 'questions.csv' INTO TABLE questions FIELDS TERMINATED BY '~' LINES TERMINATED BY '\n' IGNORE 1 ROWS;"
+    con.query(loadData, function (err, result) {
+        if (err) throw err;
+        console.log("data loaded");
+    });
+
+    /*
+    var loadData = "SELECT COL_LENGTH('questions','ID') AS Result;"
+    con.query(loadData, function (err, result) {
+        if (err) throw err;
+        console.log("Queston total: ", result);
+        questonTotal = result;
+    });
+    */
+
+});
+ //*/
+
+
+var json;
 
 app.listen(port, () => console.log(`Listening on port ${port}`)); 
 
 let sentQs = [];
-app.get('/express_backend', (req, res) => {
-
-    //create a random number
-    //query db
-   // SELECT questions where id = x
+app.get('/getQuestions', (req, res) => {
     
-    let randomNumber = Math.floor(Math.random()*10);  
+    
+    questionTotal = 26;
+    let randomNumber = Math.floor(Math.random()*questionTotal)+1;  
     while(sentQs.includes(randomNumber)){
-        randomNumber = Math.floor(Math.random()*10);
-        console.log(randomNumber);
+        randomNumber = Math.floor(Math.random()*questionTotal)+1;
+        
     }
+    console.log(randomNumber);
     sentQs.push(randomNumber);
 
-   
-    console.log(questions[randomNumber].questionText);
+    con.connect(function(err){
+    var sql = 'SELECT * FROM questions WHERE ID = ' + mysql.escape(randomNumber);
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        var string = JSON.stringify(result);
+       // console.log('>> string: ', string );
+        json =  JSON.parse(string);
+        
+        //console.log('>> question: ', json[0].Question);
+        
+    });
+    }); 
+
+    ///*
+
+    //console.log(questions[randomNumber].questionText);
     res.send(
         { 
             id: randomNumber,
-            questionText: questions[randomNumber].questionText,
-            answer: questions[randomNumber].answer,
-            answerText: questions[randomNumber].answerText,
-            min: questions[randomNumber].min,
-            max: questions[randomNumber].max,
-            units: questions[randomNumber].units,
-            category: questions[randomNumber].category,
-            link: questions[randomNumber].link,
-            blurb: questions[randomNumber].blurb,
-            by: questions[randomNumber].by,
-            image: questions[randomNumber].image
+            questionText: json[0].Question,
+            answer: json[0].Answer,
+            answerText: json[0].AnswerText,
+            min: json[0].Min,
+            max: json[0].Max,
+            units: json[0].Units,
+            category: json[0].Category,
+            link: json[0].Link,
+            blurb: json[0].Blurb,
+            by: json[0].By,
+            image: json[0].Image,
+            step: json[0].Step
         }
+        
     );
-
-    if(sentQs.length==10){
+    //console.log(json[0].Answer);
+        // */
+    if(sentQs.length>=questionTotal){
         sentQs = [];
     }
-}); 
+
+
+});
 
 const questions = [
     {

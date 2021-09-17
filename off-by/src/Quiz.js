@@ -40,7 +40,8 @@ function Quiz({handleScore}) {
 							link: res.link,		
 							image: res.image,
 							blurb: res.blurb,
-							by: res.by					
+							by: res.by,
+							step: res.step,					
 							}
 						}]
 				).then((number == 0) ? () => setQuestion(
@@ -57,19 +58,22 @@ function Quiz({handleScore}) {
 							link: res.link,		
 							image: res.image,
 							blurb: res.blurb,
-							by: res.by			
+							by: res.by,			
+							step: res.step,	
 						}): null))
 			.catch(err => console.log(err));
 		}
 	}, [])
 
-	useEffect(()=>
+
+	useEffect(()=>{
+	
 			questionStore.filter(q => (q.question.num == currentQuestion))
-			.map(q =>setQuestion(q.question))
-	)
+			.map(q => setQuestion(q.question));		
+	})
 
 	const callBackendAPI = async () => {
-		const response = await fetch('/express_backend');
+		const response = await fetch('/getQuestions');
 		const body = await response.json();
 	
 		if (response.status !== 200) {
@@ -78,9 +82,6 @@ function Quiz({handleScore}) {
 		return body;
 	};
 
-	const init = () => {
-		//setGuess(questions[currentQuestion+1].min);
-	}
 
 	const calcOffBy = () => {
 		var offByNum = abs(parseInt((question.answer) - parseInt(guess)));
@@ -96,7 +97,13 @@ function Quiz({handleScore}) {
 	}
 
 	const handleGuessChange = (guess) => {
-		setGuess(guess);
+		if(guess> question.max){
+			setGuess(question.max);
+		}else if(guess < question.min){
+			setGuess(question.min)
+		}else{
+			setGuess(guess);
+		}
 	}
 	const handleNextQ = () => {
 		
@@ -145,13 +152,9 @@ function Quiz({handleScore}) {
 						</div>
 					</div>
 				</div>	
-				<div className= 'question-section'>		
-					<div>{currentQuestion}</div>	
-					<div>{question.num}</div>
-					<div>{question.id}</div>	
-					
+				<div className= 'question-section'>						
 					<div className='question-text'>{question.questionText}</div>		
-					<Slider min = {question.min} max = {question.max} units = {question.units} handleGuessChange ={handleGuessChange} />	
+					<Slider min = {question.min} max = {question.max} units = {question.units} step= {question.step} handleGuessChange ={handleGuessChange} />	
 					<button  onClick={() => handleAnswerOptionClick()}>Show Answer</button>
 				</div>
 
@@ -168,3 +171,6 @@ function Quiz({handleScore}) {
 export default Quiz;
 //<div>{questionStore.filter(q => (q.questuin.id==2)).map(m =>(<li key = {m.id}>{m.questionText}</li>))}</div>
 //<div>{question.id}</div>
+//					<div>{currentQuestion}</div>	
+//<div>{question.num}</div>
+//<div>{question.id}</div>//
