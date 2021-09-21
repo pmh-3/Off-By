@@ -1,4 +1,76 @@
 
-  .slider {
-    font-size: 50px;
-  }
+/* QUESTION/TIMER/LEFT SECTION */
+
+.quiz-container{
+  display: grid;
+  height: 90vh;
+  width: 90vw;
+  grid-template-columns: .25fr 1fr .25fr;
+  grid-template-rows: .5fr 1fr;
+
+  grid-template-areas: 
+      "timer question-count question-count"
+      "question-section question-section question-section";
+  grid-gap: 0.2rem;
+}
+
+
+#question-section {
+  width: 100%;
+  align-items: center;
+  font-size: 100px;
+  display: flex;
+  flex-direction: column;
+  grid-area: question-section;
+}
+
+.upper-ribbon {
+  width: 100%;
+  display: flex;
+  margin-bottom: 50px;
+}
+
+
+#timer {
+  height: 110px;
+  width: 110px;
+  background-color: rgb(230, 153, 12);
+  border-radius: 50%;
+  text-align: center;
+  justify-content: left;
+  font-size: 80px;
+  grid-area: timer;
+  margin-top: 100px;
+}
+
+#question-count {
+  font-size: 30px;
+  margin-top: 100px;
+  grid-area: question-count;
+  justify-content: right;
+  text-align: right;
+}
+
+#question-count span {
+  font-size: 50px;
+  justify-content: right;
+  text-align: right;
+}
+
+.question-text {
+  margin-bottom: 50px;
+}
+
+.timer-text {
+  background: rgb(230, 153, 12);
+  padding: 10px;
+  margin-top: 20px;
+  margin-right: 10px;
+  border: 5px solid rgb(255, 189, 67);
+  border-radius: 10px;
+  text-align: left;
+  width: 50px;
+}
+
+
+

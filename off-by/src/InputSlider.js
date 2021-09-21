@@ -7,8 +7,6 @@ import Input from '@mui/material/Input';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 
-
-
 const StylishSlider = withStyles({
   root: {
     color: '#3880ff',
@@ -44,16 +42,14 @@ const StylishSlider = withStyles({
 
 const StylishInput = withStyles({
 
-  
-
   root: {
-
     width: 200,
     color: 'white',
     fontColor: 'white',
     height: 60,  
-    fontSize: '60px',
-    /*
+    fontSize: '100px',
+
+    /* //cant get up and down button to look cool
     '& input[type=number]::-webkit-outer-spin-button': {
       height: 30,
       width: 100,
@@ -65,22 +61,17 @@ const StylishInput = withStyles({
     color: 'white',
   }
   */
-
   },
-
 })(Input);
 
 
 function InputSlider({min, max, units, step, handleGuessChange}) {
+  const [value, setValue] = React.useState(min);
 
   useEffect(() =>{
     setValue(min)
 
   },[min])
-
-
-
-  const [value, setValue] = React.useState(min);
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
@@ -88,10 +79,8 @@ function InputSlider({min, max, units, step, handleGuessChange}) {
   };
 
   const handleInputChange = (event) => {
-
       setValue(event.target.value === '' ? '' : Number(event.target.value));
       handleGuessChange(event.target.value)
-    
   };
 
   const handleBlur = () => {
@@ -135,5 +124,4 @@ function InputSlider({min, max, units, step, handleGuessChange}) {
     </div>
   );
 }
-
 export default InputSlider;

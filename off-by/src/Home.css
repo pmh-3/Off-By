@@ -1,0 +1,176 @@
+.side-by-side {
+    width: 100%;
+    display: flex;
+  }
+
+.container{
+    display: grid;
+    height: 100vh;
+    width: 95vw;
+    grid-template-columns: .5fr 1fr .5fr;
+    grid-template-rows: .25fr 1fr .25fr;
+
+    grid-template-areas: 
+        "banner banner logo"
+        "leaderboard otter play"
+        "stats stats stats";
+    grid-gap: 0.2rem;
+
+  }
+
+  #banner{
+    background-color: #4daef8;
+    grid-area: banner;
+    font-size: 200px;
+  }
+
+  #subheader{
+    font-size: 100px;
+  }
+
+  #leaderboard{
+      margin-top: 100px;
+      background-color: #4daef8;
+      grid-area: leaderboard;
+  }
+
+  #otter{
+      background-color: #4daef8;
+      grid-area: otter;
+      align-items: left;
+      display: flex;
+      flex-direction: row;
+  }
+
+  #otter-image{
+    height: 70%;
+    width: 40%;
+  }
+
+  #instructions{
+    background-color: #252d4a;
+    width: 50%;
+    height: 60%;
+    border: 5px solid rgb(85, 42, 8);
+    border-style: double;
+    padding: 50px;
+    margin: 20px;
+    align-items: center;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+  }
+
+  #logo{
+    background-color: #4daef8;
+    grid-area: logo;
+    justify-content: right;
+    position: absolute;
+    right: 0;
+  }
+
+  #play{
+    background-color: #4daef8;
+    grid-area: play;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .play-button{
+    width: 500px;
+    font-size: 200px;
+    color: #ffffff;
+    background-color: #252d4a;
+    border-radius: 15px;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+
+    border:7px solid #e77d19;
+    cursor: pointer;
+
+  }
+
+  a {
+    background: #950006;
+    border: none;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    position: relative;
+    text-decoration: none;
+    width: 100px
+}
+
+a:before{
+    background: #950006;
+    border: none;
+    content: '';
+    display: block;
+    height: 20px;
+    left: 90px;
+    position: absolute;
+    top: 4px;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 21px;
+}
+a button {
+    color: #fff;
+    background: none;
+    border: none;
+    font-weight: bold;
+    position: relative;
+    width: 120px;
+    height: 28px;
+}
+
+  .triangle {
+    width: 0;
+    height: 0;
+  }
+
+  .triangle .triangle-right {
+    border-top: 50px solid transparent;
+    border-left: 100px solid #32557f;
+    border-bottom: 50px solid transparent;
+  }
+
+  #stats{
+      background-color: #252d4a;
+      grid-area: stats;
+      font-size: 30px; 
+      width: 100%;
+      align-items: center;
+
+      border: 5px solid rgb(255, 122, 14);
+      border-style: double;
+      padding: 50px;
+      margin: 80px;
+  }
+
+
+  #stats-title {
+    font-size: 50px;
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 550px){
+    .container{
+      grid-template-columns: 1fr .25fr;
+      grid-template-rows: .2fr 1fr .25fr .25fr;
+      grid-template-areas:
+        "banner logo"
+        "otter play"
+        "leaderboard leaderboard"
+        "stats stats";
+    }
+
+  }
+

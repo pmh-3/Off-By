@@ -12,7 +12,7 @@ body {
 }
 
 body {
-  background-color: #7cc6fe;
+  background-color: #4daef8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,20 +22,8 @@ body {
   height: min-content;
 }
 
-.app {
-
-  width: 100%;
-  min-height: 1000px;
-  height: min-content;
-  border-radius: 15px;
-  padding: 40px;
-  box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: space-evenly;
-}
 
 /*SLIDER*/
-
 .mySlider {
   align-items: center;
   flex-direction: column;
@@ -46,7 +34,6 @@ body {
   display: flex;
   flex-direction: row;
 }
-
 
 /* ANSWERS/RIGHT SECTION */
 .answer-section {
@@ -126,57 +113,6 @@ body {
   align-items: center;
 }
 
-/* QUESTION/TIMER/LEFT SECTION */
-.question-section {
-  width: 100%;
-  align-items: center;
-  font-size: 50px;
-  display: flex;
-  flex-direction: column;
-}
-
-.upper-ribbon {
-  width: 100%;
-  display: flex;
-  margin-bottom: 50px;
-}
-.dot {
-  height: 110px;
-  width: 110px;
-  background-color: rgb(230, 153, 12);
-  border-radius: 50%;
-  text-align: center;
-  justify-content: left;
-  font-size: 80px;
-}
-
-.question-count {
-  margin-bottom: 40px;
-  font-size: 30px;
-  margin-left: 150px;
-}
-
-.question-count span {
-  font-size: 50px;
-  justify-content: right;
-  text-align: right;
-}
-
-.question-text {
-  margin-bottom: 50px;
-}
-
-.timer-text {
-  background: rgb(230, 153, 12);
-  padding: 10px;
-  margin-top: 20px;
-  margin-right: 10px;
-  border: 5px solid rgb(255, 189, 67);
-  border-radius: 10px;
-  text-align: left;
-  width: 50px;
-}
-
 
 .triangle-right {
   width: 0;
@@ -238,4 +174,56 @@ button:focus {
 
 button svg {
   margin-right: 5px;
+}
+
+
+/*leaderBoard */
+
+.add-leader {
+  width: 100%;
+  align-items: center;
+  font-size: 50px;
+  display: flex;
+  flex-direction: column;
+  
+}
+.input[type=text]{
+  border: 2px solid rgb(216, 110, 10);
+  border-radius: 4px;
+  background-color: #090846;
+  color: white;
+  width: 50%;
+  height: 50px;
+  font-size:50px;
+}
+
+.leaderboard {
+  background-color: #252d4a;
+  width: 400px;
+  height: 850px;
+  border: 5px solid rgb(255, 122, 14);
+  border-style: double;
+  padding: 50px;
+  margin: 20px;
+  align-items: left;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  flex: 50%;
+
+}
+
+#lb-title {
+  font-size: 50px;
+  text-align: center;
+}
+
+ul.no-bullets {
+  list-style-type: none;
+}
+
+.stats-text{
+  display: flex;
+  flex-direction: row;
+  padding: 200px; 
 }

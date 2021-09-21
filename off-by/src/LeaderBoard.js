@@ -1,31 +1,119 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
-import Slider from './InputSlider';
-import Answer from './Answer';
-import Timer from './Timer';
-import { integerPropType } from '@mui/utils';
-import { Water } from '@mui/icons-material';
-var abs = require('math-abs' );
 
-function LeaderBoard() {
+function LeaderBoard({score, handleAdd}) {
 
-    const [LB, setLB] = useState([  
-                                    {   
-                                        name: "Waffler",
-                                        score: 0,                
-                                    },
-                                    {
-                                        name: "Skeeter",
-                                        score: 1,
-                                    }
-                                    ]);
-    const [leader, setLeader] = useState([]);
+    const [name, setName] = useState();
+    const [flag, setFlag] = useState("nuffin");
+    const [LB, setLB] = useState([]);
+    const [isadded, setadded] = useState(true);
 
-    const checkLeader = (score) =>{
-        LB.filter(l => (l.score < score))
-        .map(l => setQuestion(q.question));	
+    const refreshLB = ()=>{
+        setLB([]);
+        return Promise.resolve(0);
+    };
+    
+    useEffect(()=>{
+        refreshLB().then((num) => init());
+    },[])
 
+    useEffect(()=>{
+        //Leaderboard duplicates if init is ran again
+      // refreshLB().then((num) => init());
+    },[flag])
+
+    const init = ()=>{
+        //setLB([]); //doesnt do anything
+
+        
+            getLB().then(res =>{
+                for(let i=0; i<21;i++){
+                setLB(l =>[... l,{
+                    Name: res.L[i].Name,
+                    Score: res.L[i].Score,
+                    Rank: i
+                }])
+            }    
+         } ).catch(err => console.log(err));
+          
     }
 
+    const getLB = async () => {
+        const response = await fetch('/getLeaderBoard');
+        const body = await response.json();
+        //body = JSON.parse(body);
+        if (response.status !== 200) {
+          throw Error(body.message) 
+        }
+        return body;
+    };
 
+    const addLeader = async (e) => {
+        const response = await fetch('/addLeader', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: {name}, score: {score},}),
+        });
+        const body = await response.text();
+        console.log(body);
+        setadded(true);
+        handleAdd(1000);
+        //window.location.reload(false);
+    }
+
+    var screen = <></>;
+
+    const setLeader = ()=>{
+        screen = 
+        <>
+            <div className="add-leader">
+                <p>
+                    <div></div>
+                    <div>Congratulations!!</div>
+                    <div>You are an HONORARY OTTER!</div>
+                    <strong>Enter Your Name:</strong>
+                </p>
+                <input
+                    className= "input"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+                <button onClick={()=>addLeader()} >Enter</button>
+            </div>
+        </>
+    }
+
+    var scoretobeat;
+    const checkLeader = (score) =>{
+        if(LB.length<20){
+            //wait
+        }else{     
+    
+            LB.filter(l => (l.Rank == 20))
+            .map(l => {scoretobeat = l.Score});	
+
+            if(parseInt(scoretobeat) >= parseInt(score)){
+                setLeader();
+            }
+        }
+    }
+
+    checkLeader(score);
+   
+    return(
+        <>
+        {screen}
+        <div className= "leaderboard">
+                <div id= 'lb-title'>LeaderBoard</div>
+                <ul class="no-bullets">
+                    {LB.map((l) => (
+                        <li key={l.Rank}>{l.Rank}. {l.Name}: {l.Score}%</li>
+                    ))}
+                </ul>
+        </div>
+        </>
+    )
 }
+export default LeaderBoard;

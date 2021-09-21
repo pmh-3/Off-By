@@ -11,7 +11,7 @@ const LOCALSTORAGE = 'todApp.todos'
 
 function App() {
 
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(100);
 
   const handleScore = (avg) => {
       setScore(parseInt(avg))

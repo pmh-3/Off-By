@@ -3,7 +3,8 @@ const app = express();
 const port = process.env.PORT || 5000; 
 var mysql = require('mysql');
 
-
+app.use(express.json());
+app.use(express.urlencoded());
 
 var con = mysql.createConnection({
 
@@ -13,7 +14,7 @@ var con = mysql.createConnection({
     database: "obdb"
 });
   
-
+//DB INITIALIZATION 
 con.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
@@ -22,10 +23,9 @@ con.connect(function(err) {
         if (err) throw err;
         console.log("Database created");
     });
-    var sql = "CREATE TABLE questions (question VARCHAR(255), answer VARCHAR(255))";
-    (ID, Questions, Answer, Min, Max, Units, AnswerText, Blurb, By, Step, Category)
+
     */
-    ///*
+    /*
     var sql = "DROP TABLE questions";
     con.query(sql, function (err, result) {
         if (err) throw err;
@@ -52,44 +52,57 @@ con.connect(function(err) {
         console.log("Queston total: ", result);
         questonTotal = result;
     });
-    */
+   
 
+        var sql = "DROP TABLE leaderboard";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Table deleted");
+    });
+
+    createLB = "CREATE TABLE leaderboard (`ID` INT NOT NULL AUTO_INCREMENT,`Name` VARCHAR(100) NOT NULL, `Score` FLOAT NULL, PRIMARY KEY (`ID`));"
+    con.query(createLB, function (err, result) {
+        if (err) throw err;
+        console.log("LB Table created");
+    });
+
+    for(let i = 0; i<20; i++){
+
+        var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES (' ','100');"
+        con.query(addLeader, function (err, result) {
+            if (err) throw err;
+            console.log("Leader Added");
+        });
+    }    
+  */
 });
- //*/
-
-
-var json;
 
 app.listen(port, () => console.log(`Listening on port ${port}`)); 
 
+var json;
 let sentQs = [];
-app.get('/getQuestions', (req, res) => {
-    
-    
-    questionTotal = 26;
-    let randomNumber = Math.floor(Math.random()*questionTotal)+1;  
-    while(sentQs.includes(randomNumber)){
-        randomNumber = Math.floor(Math.random()*questionTotal)+1;
-        
-    }
-    console.log(randomNumber);
-    sentQs.push(randomNumber);
 
-    con.connect(function(err){
-    var sql = 'SELECT * FROM questions WHERE ID = ' + mysql.escape(randomNumber);
-    con.query(sql, function (err, result) {
-        if (err) throw err;
-        var string = JSON.stringify(result);
-       // console.log('>> string: ', string );
-        json =  JSON.parse(string);
-        
-        //console.log('>> question: ', json[0].Question);
-        
-    });
-    }); 
+con.connect(function(err){
+    app.get('/getQuestions', (req, res) => {
 
-    ///*
+        questionTotal = 26;
+        let randomNumber = Math.floor(Math.random()*questionTotal)+1;  
 
+        while(sentQs.includes(randomNumber)){
+            randomNumber = Math.floor(Math.random()*questionTotal)+1;
+            
+        }
+        console.log(randomNumber);
+        sentQs.push(randomNumber);
+
+        var sql = 'SELECT * FROM questions WHERE ID = ' + mysql.escape(randomNumber);
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+
+            var string = JSON.stringify(result);
+            json =  JSON.parse(string);
+        });
+     
     //console.log(questions[randomNumber].questionText);
     res.send(
         { 
@@ -106,16 +119,106 @@ app.get('/getQuestions', (req, res) => {
             by: json[0].By,
             image: json[0].Image,
             step: json[0].Step
-        }
-        
+        }        
     );
     //console.log(json[0].Answer);
-        // */
+
     if(sentQs.length>=questionTotal){
         sentQs = [];
     }
+}); 
 
+});
 
+con.connect(function(err){
+    var leaderCount = 20;
+
+    app.get('/getLeaderBoard', (req, res) => {
+        console.log("getting LB");
+
+        /* //Unable to get count of records in column
+        var count = 'SELECT COUNT(ID) AS total FROM leaderboard;'
+        con.query(count, function (err, result) {
+            if (err) throw err;
+            var coloncount = result;
+            leaderCount = coloncount.toString().replace(':', ' ');
+            leaderCount = parseInt(leaderCount);
+
+            if(leaderCount > 20){
+                leaderCount = 20;
+            }
+            console.count("leadercount", result);
+        });
+        */
+
+        var sort = 'SELECT * FROM leaderboard ORDER BY Score;'
+        con.query(sort, function (err, result) {
+            if (err) throw err;
+        });
+
+        var getLeaders = 'SELECT * FROM leaderboard ORDER BY Score LIMIT 21;'
+        var LBarr = [];
+        var LB = [];
+       
+        con.query(getLeaders, function (err, result) {   
+            if (err) throw err;
+        
+            for(var i of result){
+                LBarr.push(i)
+            }
+
+            const leaders = Object.values(JSON.parse(JSON.stringify(LBarr)));
+            leaders.forEach((v) => LB.push(v));      
+            console.log(LB);
+   
+            res.send(
+                {
+                   L:[
+                       { Name:LB[0].Name, Score:LB[0].Score,Rank:0},
+                       { Name:LB[1].Name, Score:LB[1].Score,Rank:1},
+                       { Name:LB[2].Name, Score:LB[2].Score,Rank:2},
+                       { Name:LB[3].Name, Score:LB[3].Score,Rank:3},
+                       { Name:LB[4].Name, Score:LB[4].Score,Rank:4},
+                       { Name:LB[5].Name, Score:LB[5].Score,Rank:5},
+                       { Name:LB[6].Name, Score:LB[6].Score,Rank:6},
+                       { Name:LB[7].Name, Score:LB[7].Score,Rank:7},
+                       { Name:LB[8].Name, Score:LB[8].Score,Rank:8},
+                       { Name:LB[9].Name, Score:LB[9].Score,Rank:9},
+                       { Name:LB[10].Name, Score:LB[10].Score,Rank:10},
+                       { Name:LB[11].Name, Score:LB[11].Score,Rank:11},
+                       { Name:LB[12].Name, Score:LB[12].Score,Rank:12},
+                       { Name:LB[13].Name, Score:LB[13].Score,Rank:13},
+                       { Name:LB[14].Name, Score:LB[14].Score,Rank:14},
+                       { Name:LB[15].Name, Score:LB[15].Score,Rank:15},
+                       { Name:LB[16].Name, Score:LB[16].Score,Rank:16},
+                       { Name:LB[17].Name, Score:LB[17].Score,Rank:17},
+                       { Name:LB[18].Name, Score:LB[18].Score,Rank:18},
+                       { Name:LB[19].Name, Score:LB[19].Score,Rank:19},
+                       { Name:LB[20].Name, Score:LB[20].Score,Rank:20},
+                   ]      
+                }
+            );
+              
+        }); 
+
+    });
+
+    app.post('/addLeader', (req, res) => {
+        var Name = req.body.name.name;
+        var Score = req.body.score.score;
+        console.log(req.body);
+        console.log(req.body.score.score);
+
+        var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES ('"+Name+"','"+Score+"');"
+        con.query(addLeader, function (err, result) {
+            if (err) throw err;
+            console.log("Leader Added");
+        });
+
+        res.send(
+        `I received your POST request. This is what you sent me: ${req.body.name}`,
+        );
+    });
 });
 
 const questions = [
