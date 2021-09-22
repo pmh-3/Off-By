@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 
 function Timer({timesUp}) {
-    const [seconds, setSeconds] = React.useState(30);
+    const [seconds, setSeconds] = React.useState(3000);
 
     React.useEffect(() => {
         if (seconds >0){

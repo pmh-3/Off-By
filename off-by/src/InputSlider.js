@@ -6,13 +6,14 @@ import Slider from '@mui/material/Slider';
 import Input from '@mui/material/Input';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+import './Slider.css';
 
 const StylishSlider = withStyles({
   root: {
     color: '#3880ff',
     height: 5,
     padding: '15px 0',
-    width: 500,
+    width: '900px',
     margin: 50,
   
   },
@@ -43,7 +44,7 @@ const StylishSlider = withStyles({
 const StylishInput = withStyles({
 
   root: {
-    width: 200,
+    width: '50%',
     color: 'white',
     fontColor: 'white',
     height: 60,  
@@ -92,23 +93,31 @@ function InputSlider({min, max, units, step, handleGuessChange}) {
   };
 
   return (
-    <div className= 'mySlider'>
+    <div className= 'question-container'>
+      <div id="slider-box">
+        <div id='slider'>
+          <div id="min">
+            {min}
+          </div>
+          <div className="mySlider">
+            <StylishSlider
+              value={typeof value === 'number' ? value : 0}
+              onChange={handleSliderChange}
+              min={parseInt(min)}
+              max={parseInt(max)}
+              step= {step}
+            />
+            </div>
+          <div id="max">
+            {max}
+          </div>
+        </div>
+      </div>
+      
 
-      <Grid container spacing={0} alignItems="center">
-        <h3> {min} </h3>
-        <Grid item>
-          <StylishSlider
-            value={typeof value === 'number' ? value : 0}
-            onChange={handleSliderChange}
-            min={parseInt(min)}
-            max={parseInt(max)}
-            step= {step}
-          />
-        </Grid>
-        <h3>{max}</h3>
-      </Grid>
-        <div className= 'guessIn'>
-          <StylishInput         
+      <div id="input-box">
+        <StylishInput   
+                id= 'input'      
                 value={value}
                 onChange={handleInputChange}
                 onBlur={handleBlur}
@@ -118,10 +127,12 @@ function InputSlider({min, max, units, step, handleGuessChange}) {
                   max: parseInt(max),
                   type: 'number',
                 }}
-              />
-              <div> {units}</div>     
-        </div>
-    </div>
+              />     
+        <div id='units'> 
+          {units}
+        </div> 
+      </div>
+    </div>    
   );
 }
 export default InputSlider;

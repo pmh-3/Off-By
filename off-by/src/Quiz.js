@@ -140,9 +140,13 @@ function Quiz({handleScore}) {
 							<span>Question {currentQuestion + 1}</span>/{quizLength}
 						</div>
 					<div id= 'question-section'>						
-						<div className='question-text'>{question.questionText}</div>		
-						<Slider min = {question.min} max = {question.max} units = {question.units} step= {question.step} handleGuessChange ={handleGuessChange} />	
-						<button  onClick={() => handleAnswerOptionClick()}>Show Answer</button>
+						<div className='question-text'>{question.questionText}</div>							
+					</div>	
+					<div id='inputs'>
+						<Slider min = {question.min} max = {question.max} units = {question.units} step= {question.step} handleGuessChange ={handleGuessChange} />
+					</div>				
+					<div id="answer"> 
+							<button  id='show-answer' onClick={() => handleAnswerOptionClick()}>Show Answer</button>
 					</div>	
 			</div>	
 		</>;				

@@ -23,17 +23,6 @@ body {
 }
 
 
-/*SLIDER*/
-.mySlider {
-  align-items: center;
-  flex-direction: column;
-  display: flex;
-}
-
-.guessIn {
-  display: flex;
-  flex-direction: row;
-}
 
 /* ANSWERS/RIGHT SECTION */
 .answer-section {

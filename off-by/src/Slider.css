@@ -1,0 +1,55 @@
+
+/*SLIDER*/
+
+.question-container{
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+}
+
+#slider-box{
+    width: 100%;
+    justify-content: center;
+}
+
+#slider{
+    font-size: 3vw;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+}
+
+#input{
+    color: white;
+    font-size: 3vw;
+    text-align: center;
+    width: 30vw;
+}
+
+#input-box{
+    grid-area: input;
+
+    margin: 10%;
+
+    font-size: 2vw;
+    display: flex;
+    flex-direction: row;
+}
+
+#units{
+    font-size: 2vw;
+}
+
+.mySlider {
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+  }
+  
+  .guessIn {
+    font-size: 2vw;
+    display: flex;
+    flex-direction: row;
+  }
+  
