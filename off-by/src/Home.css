@@ -62,6 +62,15 @@
     border-radius: 25px;
   }
 
+  #demo-slider{
+    font-size: 2vw;
+
+    width: 40%;
+  }
+
+
+  
+
   #logo{
     background-color: #4daef8;
     grid-area: logo;
@@ -80,20 +89,13 @@
   }
 
   .play-button{
-    width: 500px;
-    font-size: 200px;
-    color: #ffffff;
-    background-color: #252d4a;
-    border-radius: 15px;
-    display: flex;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-
-    border:7px solid #e77d19;
     cursor: pointer;
-
+    border-top: 200px solid transparent;
+    border-left: 400px solid #e77d19;
+    border-bottom: 200px solid transparent;
   }
+
+  /* 
 
   a {
     background: #950006;
@@ -140,7 +142,7 @@ a button {
     border-top: 50px solid transparent;
     border-left: 100px solid #32557f;
     border-bottom: 50px solid transparent;
-  }
+  } */
 
   #stats{
       background-color: #252d4a;

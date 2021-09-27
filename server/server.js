@@ -66,7 +66,7 @@ con.connect(function(err) {
         console.log("LB Table created");
     });
 
-    for(let i = 0; i<20; i++){
+    for(let i = 0; i<21; i++){
 
         var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES (' ','100');"
         con.query(addLeader, function (err, result) {
@@ -74,7 +74,9 @@ con.connect(function(err) {
             console.log("Leader Added");
         });
     }    
-  */
+         */
+
+ 
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`)); 

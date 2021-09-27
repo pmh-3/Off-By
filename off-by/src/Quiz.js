@@ -146,7 +146,7 @@ function Quiz({handleScore}) {
 						<Slider min = {question.min} max = {question.max} units = {question.units} step= {question.step} handleGuessChange ={handleGuessChange} />
 					</div>				
 					<div id="answer"> 
-							<button  id='show-answer' onClick={() => handleAnswerOptionClick()}>Show Answer</button>
+							<div id='show-answer' onClick={() => handleAnswerOptionClick()}></div>
 					</div>	
 			</div>	
 		</>;				

@@ -12,7 +12,7 @@ const StylishSlider = withStyles({
   root: {
     color: '#3880ff',
     padding: '15px 0',
-    width: "60vw !important",
+    width: "10vw !important",
     margin: 50,
     height: "20px !important",
   
@@ -45,11 +45,11 @@ const StylishSlider = withStyles({
 const StylishInput = withStyles({
 
   root: {
-    width: '50%',
+    width: '15%',
     color: 'white',
     fontColor: 'white',
-    height: 100,  
-    fontSize: '100px',
+    height: 110,  
+    fontSize: '80px',
 
     /* //cant get up and down button to look cool
     '& input[type=number]::-webkit-outer-spin-button': {
@@ -67,7 +67,7 @@ const StylishInput = withStyles({
 })(Input);
 
 
-function InputSlider({min, max, units, step, handleGuessChange}) {
+function DemoSlider({min, max, units, step, handleGuessChange}) {
   const [value, setValue] = React.useState(min);
 
   useEffect(() =>{
@@ -135,4 +135,4 @@ function InputSlider({min, max, units, step, handleGuessChange}) {
     </div>    
   );
 }
-export default InputSlider;
+export default DemoSlider;

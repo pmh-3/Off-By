@@ -62,6 +62,10 @@ function LeaderBoard({score, handleAdd}) {
         //window.location.reload(false);
     }
 
+    const cancel = () =>{
+        handleAdd(1000);
+    }
+
     var screen = <></>;
 
     const setLeader = ()=>{
@@ -72,7 +76,7 @@ function LeaderBoard({score, handleAdd}) {
                     <div></div>
                     <div>Congratulations!!</div>
                     <div>You are an HONORARY OTTER!</div>
-                    <strong>Enter Your Name:</strong>
+                    <strong>Enter your name for the Leaderboard:</strong>
                 </p>
                 <input
                     className= "input"
@@ -81,6 +85,7 @@ function LeaderBoard({score, handleAdd}) {
                     onChange={(e) => setName(e.target.value)}
                 />
                 <button onClick={()=>addLeader()} >Enter</button>
+                <button onClick={()=>cancel()} >No Thanks!</button>
             </div>
         </>
     }
@@ -106,7 +111,7 @@ function LeaderBoard({score, handleAdd}) {
         <>
         {screen}
         <div className= "leaderboard">
-                <div id= 'lb-title'>LeaderBoard</div>
+                <div id= 'lb-title'>Leaderboard</div>
                 <ul class="no-bullets">
                     {LB.map((l) => (
                         <li key={l.Rank}>{l.Rank}. {l.Name}: {l.Score}%</li>

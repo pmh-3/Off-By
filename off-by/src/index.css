@@ -24,66 +24,6 @@ body {
 
 
 
-/* ANSWERS/RIGHT SECTION */
-.answer-section {
-  font-size: 30px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.answer-text {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-.facts {
-  width: 60%;
-  display: flex;
-}
-
-.image {
-  width: 100%;
-  height: 100%;
-  
-}
-
-.column {
-  flex: 50%;
-}
-
-.blurb {
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-  border:5px solid #ffffff;
-  font-size: 30px;
-  color: #ffffff;
-  background-color: #252d4a;
-  border-radius: 5px;
-  display: flex;
-  padding: 10px;
-  align-items: center;
-  cursor: pointer;
-}
-
-.bottom-strip {
-  width: 100%;
-  justify-content: right;
-  display: flex;  
-  margin-top: 60px;
-}
-
-.info{
-  font-size: 20px;
-  width: 100%;
-  display: flex;
-
-  flex-direction: column;
-  margin-left: 400px;
-  margin-top: 200px;
-}
 
 .title {
   font-size: 100px;
@@ -102,15 +42,14 @@ body {
   align-items: center;
 }
 
+/* Ruler */
 
-.triangle-right {
-  width: 0;
-  height: 0;
-  border-top: 50px solid transparent;
-  border-left: 100px solid red;
-  border-bottom: 50px solid transparent;
+#hzline{
+  height: 3vh;
+  background-color:rgb(216, 110, 10);
+  border: 10px solid rgb(216, 110, 10);
+  width: 40vw;
 }
-
 
 
 button {
@@ -216,3 +155,4 @@ ul.no-bullets {
   flex-direction: row;
   padding: 200px; 
 }
+
