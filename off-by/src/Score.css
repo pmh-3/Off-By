@@ -1,0 +1,31 @@
+.score-container{
+    display: grid;
+    height: 100vh;
+    width: 90vw;
+    grid-template-columns: .25fr 1fr .5fr;
+    grid-template-rows: .5fr 1fr;
+
+    grid-template-areas: 
+        "leaderboard score score"
+        "leaderboard otter talk";
+    grid-gap: 0.2rem;
+
+  }
+
+  #lb-box{
+      grid-area: leaderboard;
+
+  }
+
+  #score{
+      grid-area: score;
+
+  }
+
+  #otter-box{
+    grid-area: otter;
+  }
+
+  #otter-talk{
+    grid-area: talk;
+  }

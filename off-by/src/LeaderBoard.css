@@ -1,0 +1,51 @@
+
+.add-leader {
+    width: 100%;
+    align-items: center;
+    font-size: 50px;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .input[type=text]{
+    border: 2px solid rgb(216, 110, 10);
+    border-radius: 4px;
+    background-color: #090846;
+    color: white;
+    width: 50%;
+    height: 50px;
+    font-size:50px;
+  }
+  
+  .leaderboard {
+    background-color: #252d4a;
+    width: 21vw;
+    height: 60vh;
+
+    align-items: left;
+    font-size: 1vw;
+
+    display: flex;
+    flex-direction: column;
+
+    border: .2vw solid rgb(66, 32, 4);
+
+    padding: .5vw;
+    margin: 1vw;
+  }
+  
+  #lb-title {
+    font-size: 1.5vw;
+    text-align: center;
+  }
+  
+  ul.no-bullets {
+    list-style-type: none;
+  }
+  
+  .stats-text{
+    display: flex;
+    flex-direction: column;
+    padding: 2%; 
+    margin: 5%;
+  }

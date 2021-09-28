@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@500&display=swap');
+
 .side-by-side {
     width: 100%;
     display: flex;
@@ -6,14 +8,13 @@
 .container{
     display: grid;
     height: 100vh;
-    width: 95vw;
-    grid-template-columns: .5fr 1fr .5fr;
-    grid-template-rows: .25fr 1fr .25fr;
+    width: 100vw;
+    grid-template-columns: .25fr 1fr .5fr;
+    grid-template-rows: .5fr 1fr;
 
     grid-template-areas: 
-        "banner banner logo"
-        "leaderboard otter play"
-        "stats stats stats";
+        "slideout banner logo"
+        "slideOut otter play";
     grid-gap: 0.2rem;
 
   }
@@ -21,17 +22,33 @@
   #banner{
     background-color: #4daef8;
     grid-area: banner;
-    font-size: 200px;
+    font-size: 5vw;
+    text-align: center;
+    font-family: 'roboto' !important;
+  }
+
+  #slide-button{
+    cursor: pointer;
+    background-color: #252d4a;
+    border: 5px solid rgb(85, 42, 8);
+    width: 4vw;
+    height: 30vh;
+    font-size: 2vw;
+    justify-content: center;
+    text-align: center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    margin-left: 0%;
   }
 
   #subheader{
-    font-size: 100px;
+    font-size: 3vw;
   }
 
-  #leaderboard{
+  #slideOut{
       margin-top: 100px;
       background-color: #4daef8;
-      grid-area: leaderboard;
+      grid-area: slideOut;
   }
 
   #otter{
@@ -56,7 +73,7 @@
     padding: 50px;
     margin: 20px;
     align-items: center;
-    font-size: 30px;
+    font-size: 1vw;
     display: flex;
     flex-direction: column;
     border-radius: 25px;
@@ -67,9 +84,6 @@
 
     width: 40%;
   }
-
-
-  
 
   #logo{
     background-color: #4daef8;
@@ -91,77 +105,10 @@
   .play-button{
     cursor: pointer;
     border-top: 200px solid transparent;
-    border-left: 400px solid #e77d19;
+    border-left: 400px solid #db6c04;
     border-bottom: 200px solid transparent;
   }
 
-  /* 
-
-  a {
-    background: #950006;
-    border: none;
-    display: inline-block;
-    height: 28px;
-    line-height: 28px;
-    position: relative;
-    text-decoration: none;
-    width: 100px
-}
-
-a:before{
-    background: #950006;
-    border: none;
-    content: '';
-    display: block;
-    height: 20px;
-    left: 90px;
-    position: absolute;
-    top: 4px;
-    -moz-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-    width: 21px;
-}
-a button {
-    color: #fff;
-    background: none;
-    border: none;
-    font-weight: bold;
-    position: relative;
-    width: 120px;
-    height: 28px;
-}
-
-  .triangle {
-    width: 0;
-    height: 0;
-  }
-
-  .triangle .triangle-right {
-    border-top: 50px solid transparent;
-    border-left: 100px solid #32557f;
-    border-bottom: 50px solid transparent;
-  } */
-
-  #stats{
-      background-color: #252d4a;
-      grid-area: stats;
-      font-size: 30px; 
-      width: 100%;
-      align-items: center;
-
-      border: 5px solid rgb(255, 122, 14);
-      border-style: double;
-      padding: 50px;
-      margin: 80px;
-  }
-
-
-  #stats-title {
-    font-size: 50px;
-    text-align: center;
-  }
 
   @media only screen and (max-width: 550px){
     .container{

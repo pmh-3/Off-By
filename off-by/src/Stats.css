@@ -1,2 +1,27 @@
 
   
+  #stats{
+    background-color: #252d4a;
+    grid-area: stats;
+    font-size: 30px; 
+    width: 21vw;
+    height: 28vh;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border: .2vw solid rgb(66, 32, 4);
+    border-style: double;
+    padding: .5vw;
+    margin: 1vw;
+}
+
+
+#stats-title {
+  font-size: 1.5vw;
+  text-align: center;
+}
+
+#stat{
+    font-size: .8vw; 
+    margin-bottom: 2%;
+}

@@ -5,32 +5,45 @@ import Slider from './DemoSlider';
 import LeaderBoard from './LeaderBoard';
 import Stats from './Stats';
 import "./Home.css";
-import otter from './otter.png';
+import otter from './public/otter.png';
 import logo from './public/OBlogo.jpg';
-
+import SlideOut from './SlideOut';
 
 
 function Home() {
 
-  const handleGuessChange = (guess) => {
+    //ignore
+  const handleGuessChange = (guess) => {}
 
-	}
-  const arrows = ">>>";
   const history = useHistory();
+  const [isVis, setIsVis] = useState(false);
+
+  const handleSlide = (e)=>{
+    toggleSlide();
+  }
+
+  const toggleSlide = ()=>{
+    var tmp = isVis;
+    setIsVis(!tmp);
+  }
+
   return (
     <>
     <div className="container">
       <div id="banner">
         <div>OFF BY</div>
         <div></div> 
-        <div id="subheader">%%%%%%%%%%</div> 
         <div id="subheader">numbers based trivia</div>   
       </div>
       <div id="logo">
         <img src={logo} alt="logo"/>
       </div>
-      <div id="leaderboard">
-        <LeaderBoard  score = {1000}/></div>
+      <div id="slideOut" >
+        <div id="slide-button" onClick={handleSlide}>
+        Leaderboard
+        </div>
+        <SlideOut handleSlide={handleSlide} isVis={isVis}/>
+      </div>
       <div id="otter">
         <img id= "otter-image" src={otter} alt="otter"  />
         <div id="instructions">
@@ -40,15 +53,12 @@ function Home() {
           <h3></h3>
           <h3>Use the slider to make your best guess </h3>
           <h3>The less you are off by, the better </h3>
+          <h5>Hint: the more otters, the better </h5>
         </div>
       </div>
       <div id="play">
           <div className="play-button" onClick={() => history.push("/Quiz")}>     
           </div>        
-      </div>
-      <div id="stats">
-        <div id="stats-title">Stats</div>
-        < Stats className="stats" />
       </div>
     </div>
     </>
