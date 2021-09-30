@@ -72,7 +72,20 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #95cbf1a9;
+  background-color: rgb(90, 97, 105);
+  transition: 0.3s;
+}
+
+#button-box:hover{
+  background-color: #061c2c;
+}
+
+#arrow-stack{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  
 }
 
 #vl {
@@ -86,10 +99,23 @@
   border-top: 200px solid transparent;
   border-left: 400px solid #e77d19;
   border-bottom: 200px solid transparent;
-  margin: 1%;
+ 
 }
 
-#next-button{
+.arrow {
+  border: solid #e77d19;
+  border-width: 0 50px 50px 0;
+  display: inline-block;
+  padding: 80px;
+  margin: 100px;
+  flex: 1;
+}
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.next-button{
   height: 100vh;
   width:100%;
   font-size: 40px;
@@ -101,6 +127,8 @@
   float: right;
   opacity: 0.5;
 }
+
+.next-button:hover {opacity: 1;}
 
 #blank{
   float: left;

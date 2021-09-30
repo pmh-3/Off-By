@@ -58,6 +58,8 @@ function Quiz({handleScore}) {
 							by: res.by,			
 							step: res.step,	
 						}): null))
+			//To fix issue of blank intial quiz, add a .then flag to allow for quiz to show
+			//maybe simply refresh the page after init
 			.catch(err => console.log(err));
 		}
 	}, [])

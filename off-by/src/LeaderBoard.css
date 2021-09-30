@@ -1,22 +1,4 @@
 
-.add-leader {
-    width: 100%;
-    align-items: center;
-    font-size: 50px;
-    display: flex;
-    flex-direction: column;
-    
-  }
-  .input[type=text]{
-    border: 2px solid rgb(216, 110, 10);
-    border-radius: 4px;
-    background-color: #090846;
-    color: white;
-    width: 50%;
-    height: 50px;
-    font-size:50px;
-  }
-  
   .leaderboard {
     background-color: #252d4a;
     width: 21vw;

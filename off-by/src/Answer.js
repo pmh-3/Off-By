@@ -38,9 +38,17 @@ function Answer({offBy, guess, handleNextQ, question}) {
         ♦ Source: {question.link}
         </div>
       </div>
-        <div id='button-box' onClick={() => handleNextQ()}>        
-            <div id="vl"></div>
-            <div className="play-button"></div>
+        <div id='button-box' onClick={() => handleNextQ()}> 
+          <div id="vl"></div>
+          <div id='arrow-stack'>
+            <div className="arrow right"></div>
+            <div className="arrow right"></div>
+            <div className="arrow right"></div>
+            <div className="arrow right"></div>
+          </div> 
+                
+            
+            
         </div>
       </div>
     </>

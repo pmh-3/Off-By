@@ -3,7 +3,7 @@
     height: 100vh;
     width: 90vw;
     grid-template-columns: .25fr 1fr .5fr;
-    grid-template-rows: .5fr 1fr;
+    grid-template-rows: .3fr 1fr;
 
     grid-template-areas: 
         "leaderboard score score"
@@ -19,13 +19,61 @@
 
   #score{
       grid-area: score;
-
+      font-size: 3vw;
   }
 
   #otter-box{
     grid-area: otter;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
   }
 
   #otter-talk{
     grid-area: talk;
+    align-items: center;
   }
+
+  
+  #otter-image{
+    height: 70%;
+    width: 40%;
+  }
+
+  #msg{
+    background-color: #252d4a;
+    width: 50%;
+    height: 60%;
+    border: 5px solid rgb(85, 42, 8);
+    border-style: double;
+    padding: 50px;
+    margin: 20px;
+    align-items: center;
+    font-size: 1vw;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+  }
+
+/*LeaderBoard*/
+  
+.add-leader {
+  width: 100%;
+  align-items: center;
+  font-size: 50px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+
+.input[type=text]{
+  border: 2px solid rgb(216, 110, 10);
+  border-radius: 4px;
+  background-color: #090846;
+  color: white;
+  width: 50%;
+  height: 50px;
+  font-size:50px;
+}

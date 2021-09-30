@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import './LeaderBoard.css'
 
-function LeaderBoard({score, handleAdd}) {
+function LeaderBoard({score, setLeader}) {
 
     const [name, setName] = useState();
     const [flag, setFlag] = useState("nuffin");
@@ -25,7 +25,6 @@ function LeaderBoard({score, handleAdd}) {
     const init = ()=>{
         //setLB([]); //doesnt do anything
 
-        
             getLB().then(res =>{
                 for(let i=0; i<21;i++){
                 setLB(l =>[... l,{
@@ -48,48 +47,8 @@ function LeaderBoard({score, handleAdd}) {
         return body;
     };
 
-    const addLeader = async (e) => {
-        const response = await fetch('/addLeader', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name: {name}, score: {score},}),
-        });
-        const body = await response.text();
-        console.log(body);
-        setadded(true);
-        handleAdd(1000);
-        //window.location.reload(false);
-    }
-
-    const cancel = () =>{
-        handleAdd(1000);
-    }
 
     var screen = <></>;
-
-    const setLeader = ()=>{
-        screen = 
-        <>
-            <div className="add-leader">
-                <p>
-                    <div></div>
-                    <div>Congratulations!!</div>
-                    <div>You are an HONORARY OTTER!</div>
-                    <strong>Enter your name for the Leaderboard:</strong>
-                </p>
-                <input
-                    className= "input"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-                <button onClick={()=>addLeader()} >Enter</button>
-                <button onClick={()=>cancel()} >No Thanks!</button>
-            </div>
-        </>
-    }
 
     var scoretobeat;
     const checkLeader = (score) =>{
