@@ -1,12 +1,12 @@
 .score-container{
     display: grid;
     height: 100vh;
-    width: 90vw;
-    grid-template-columns: .25fr 1fr .5fr;
-    grid-template-rows: .3fr 1fr;
+    width: 100vw;
+    grid-template-columns: .25fr .5fr .6fr;
+    grid-template-rows: .25fr 1fr;
 
     grid-template-areas: 
-        "leaderboard score score"
+        "score score score"
         "leaderboard otter talk";
     grid-gap: 0.2rem;
 
@@ -14,36 +14,46 @@
 
   #lb-box{
       grid-area: leaderboard;
-
+      align-items: center;
+      justify-content: center;
+      margin: 1vw;
   }
 
   #score{
       grid-area: score;
       font-size: 3vw;
+      border: 5px solid rgb(85, 42, 8);
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
   }
 
   #otter-box{
     grid-area: otter;
-    justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
 
   #otter-talk{
     grid-area: talk;
     align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    display: flex;
   }
 
   
   #otter-image{
-    height: 70%;
-    width: 40%;
+    object-fit: cover;
+    width: 30vw;
+    height: 60vh;
   }
 
   #msg{
     background-color: #252d4a;
-    width: 50%;
+    width: 30vw;
     height: 60%;
     border: 5px solid rgb(85, 42, 8);
     border-style: double;
@@ -54,6 +64,14 @@
     display: flex;
     flex-direction: column;
     border-radius: 25px;
+  }
+
+  #options{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
   }
 
 /*LeaderBoard*/

@@ -57,7 +57,7 @@ const setLeader = ()=>{
       <div id="score">
         <div>Average Score: {score}%</div>
       </div>
-      <div id='leaderboard'> 
+      <div id='lb-box'> 
         <LeaderBoard score={score} setLeader={setLeader}/>
       </div>
       <div id='otter-box'>
@@ -66,9 +66,15 @@ const setLeader = ()=>{
       <div id="otter-talk">
         <div id="msg">
           {screen}
-          Great Job!!
-          <button onClick={() => history.push("/Quiz")}>Play Again</button>   
-          <button onClick={() => history.push("/")}>Home</button>
+
+          <div>
+            Great Job!!
+            <div id="options">
+              <button onClick={() => history.push("/Quiz")}>Play Again</button>   
+              <button onClick={() => history.push("/")}>Home</button>
+            </div>
+          </div>
+      
         </div>
       </div>
     </div>
