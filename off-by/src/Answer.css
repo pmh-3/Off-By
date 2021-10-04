@@ -1,5 +1,5 @@
 .answer-container{
-  font-size: 30px;
+
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -9,22 +9,27 @@
   display: grid;
   height: 100vh;
   width: 100vw;
-  grid-template-columns: .05fr 1fr .07fr;
-  grid-template-rows: 1fr 1fr .1fr;
+  grid-template-columns:  2fr .1fr;
+  grid-template-rows: 1fr .1fr;
 
   grid-template-areas: 
-      "blank score next"
-      "blank facts next"
-      "blank info next ";
-  grid-gap: 0.2rem;
+      " score next"
+      " facts next"
+      " info next ";
+  grid-gap: 0rem;
 
 }
 
 #a-score{
+  font-size: 1.5vw;
   align-items: center;
   display: flex;
   flex-direction: column;
   grid-area: score;
+
+  margin-top: 2vw;
+  margin-left: 3vw;
+  margin-right: 3vw;
 }
 
 #slider-score{
@@ -34,72 +39,91 @@
   grid-area: score;
 }
 
+#toLink-image{
+  width: 3vw;
+  height: auto;
+  top: 40px;
+  filter: invert(1);
+}
+
 
 #facts{
-  width: 60vw;
+  width: 80vw;
   height: 40vh;
   padding: 1vw;
   display: flex;
   grid-area: facts;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
-  border:5px solid #ffffff;
+  
+  border:5px solid #39444A;
   font-size: 30vh;
   color: #ffffff;
-  background-color: #252d4a;
+  background-color: #162936;
+  box-shadow: 0px -7px 23px 5px black;
+
   border-radius: 5px;
-  margin-left: 9vw;
-  margin-top: 3vh;
+  margin-left: 6vw;
+
+
 }
 
 #info-box{
   width: 100%;
   justify-content: left;
   display: flex;  
-  margin-top: 60px;
   grid-area: info;
   float: left;
+  font-size: 2vw;
 }
 
 
 #button-box{
-  float: top;
   grid-area: next;
   cursor: pointer;
   height: 100%;
-  width:7vw;
+  width:6vw;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  background-color: #061c2c67;
+  align-items: left;
+  background-color: #162936;
   transition: 0.3s;
+  box-shadow: -10px 0px 15px -4px black;
+  border: #162936;
 }
 
 #button-box:hover{
-  background-color: #061c2c;
+  background-color: #16293654;
 }
 
 #arrow-stack{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  float: left;
+  justify-content: left;
+
+  align-items: left;
+
 }
 
-#vl {
-  border-left: 6px solid rgb(11, 3, 80);
-  height: 100%;
+
+#next-text{
+  align-items: left;
+  margin-top: 1vw;
+  margin-left: 1vw;
+  font-size: 1.5vw;
+  color: #F4762D;
 }
 
 
 .arrow {
-  border: solid #e77d19;
-  border-width: 0 1vw 1vw 0;
+  align-items: left;
+  border: solid #F4762D;
+  border-width: 0 .5vw .5vw 0;
   display: inline-block;
   padding: 2vw;
-  margin-top: 10vh;
-  flex: 1;
+  margin-top: 11vh;
+  margin-left: 0;
+
 }
 .right {
   transform: rotate(-45deg);
@@ -117,6 +141,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+
 }
 
 .image {
@@ -150,6 +175,7 @@
   padding: 1vw;
   align-items: center;
   cursor: pointer;
+  line-height: 1.7;
 }
 
 .bottom-strip {

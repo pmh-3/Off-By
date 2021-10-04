@@ -28,10 +28,8 @@ function Score({score}) {
     <>
         <div className="add-leader">
             <div id="leader-msg">
-                <div></div>
-                <div>Congratulations!!</div>
-                <div>You are an HONORARY OTTER!</div>
-                <strong>Enter your name for the Leaderboard:</strong>
+                <strong>Congratulations, honorary otter!!</strong>
+              <div>Enter your name for the Leaderboard:</div>
             </div>
             <input
                 className= "input"

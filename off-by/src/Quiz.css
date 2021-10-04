@@ -14,7 +14,7 @@
       "inputs inputs inputs"
       "answer answer answer";
   grid-gap: 0.2rem;
-  background-color: #00A3E0;
+
 }
 
 
@@ -54,7 +54,7 @@
 #timer {
   height: 8vw;
   width: 8vw;
-  background-color: #FF8200;
+  background-color: #F4762D;
   border-radius: 50%;
   text-align: center;
   line-height: 150%;
@@ -92,10 +92,10 @@
 }
 
 #show-answer {
-
+  margin-top: 5vh;
   cursor: pointer;
   border-top: 5vw solid transparent;
-  border-left: 10vw solid #FF8200;
+  border-left: 10vw solid #F4762D;
   border-bottom: 5vw solid transparent;
 
   float: right;

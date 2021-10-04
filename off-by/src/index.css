@@ -10,20 +10,33 @@ body {
   color: #ffffff;
 }
 
-body {
+.colors {
+  
   background-color: #00A3E0;
+  background-color: #6CD1EF;
+  background-color: #00A3E0;
+  background-color: #7BC4C4;
+}
+
+body {
+  
+  
+
+  background-color: #53B0AE;
+  
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+
   width: 100%;
   min-height: 1000px;
   height: min-content;
 }
 
 
+
 .title {
-  font-size: 3vw;
+  font-size: 4vw;
   align-items: center;
   word-spacing: 10px;
 }

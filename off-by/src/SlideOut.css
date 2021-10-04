@@ -1,7 +1,9 @@
 #flyoutMenu {
     width: 25vw;
     height: 100vh;
-    background-color: #EF6A00;
+
+    background-color: #F4762D;
+   
     position: fixed;
     top: 0;
     left: 0;

@@ -1,7 +1,7 @@
 
   
   #stats{
-    background-color: #252d4a;
+    background-color: #39444A;
     grid-area: stats;
     font-size: 30px; 
     width: 21vw;
@@ -13,6 +13,11 @@
     border-style: double;
     padding: .5vw;
     margin: 1vw;
+
+    border:5px solid #39444A;
+    color: #ffffff;
+    background-color: #162936;
+    box-shadow: 0px -7px 23px 5px black;
 }
 
 

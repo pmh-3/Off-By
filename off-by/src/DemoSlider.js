@@ -10,7 +10,7 @@ import './Slider.css';
 
 const StylishSlider = withStyles({
   root: {
-    color: '#3880ff',
+    color: '#0f4c81',
     padding: '1px 0',
     width: "10vw !important",
     margin: 20,
@@ -20,7 +20,7 @@ const StylishSlider = withStyles({
   thumb: {
     height: '50px !important',
     width: '50px !important',
-    backgroundColor: '#e77d19',
+    backgroundColor: '#ffff',
     color: '#e77d19',
     border: 'brown',
     marginLeft: 0,
@@ -37,7 +37,7 @@ const StylishSlider = withStyles({
   rail: {
     height: "14px !important",
     opacity: 1,
-    backgroundColor: '#3880ff',
+    backgroundColor: '#ffff',
   },
 
 })(Slider);

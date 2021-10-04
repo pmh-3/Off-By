@@ -13,32 +13,40 @@
   }
 
   #share{
-    background-color: #252d4a;
+
     width: 10vw;
-    height: 14vh;
-    border: 5px solid rgb(85, 42, 8);
+
     border-radius: 25px;
-    font-size: 2vw;
+    font-size: 1.5vw;
     margin: 2vw;
     text-align: center;
     line-height: 7vh;
     justify-content: center;
     position: absolute;
     right: 0;
+
+    border:5px solid #39444A;
+    color: #ffffff;
+    background-color: #162936;
+    box-shadow: 0px -7px 23px 5px black;
   }
   #share:hover{
-    background-color: #ffffff;
     width: 10vw;
-    height: 14vh;
-    border: 5px solid rgb(85, 42, 8);
+
     border-radius: 25px;
-    font-size: 2vw;
+    font-size: 1.5vw;
     margin: 2vw;
     text-align: center;
     line-height: 7vh;
     justify-content: center;
     position: absolute;
     right: 0;
+
+    border:5px solid #39444A;
+    color: #ffffff;
+    background-color: #1629365b;
+    box-shadow: 0px -7px 23px 5px black;
+    
 
   }
 
@@ -86,10 +94,10 @@
   }
 
   #msg{
-    background-color: #252d4a;
+
     width: 30vw;
     height: 60%;
-    border: 5px solid rgb(85, 42, 8);
+
     border-style: double;
     padding: 50px;
     margin: 20px;
@@ -99,6 +107,12 @@
     flex-direction: column;
     border-radius: 25px;
     justify-content: center;
+    
+    border:5px solid #39444A;
+    font-size: 30vh;
+    color: #ffffff;
+    background-color: #162936;
+    box-shadow: 0px -7px 23px 5px black;
   }
 
   #options{
@@ -113,13 +127,20 @@
       color: #ffffff;
       background-color: #252d4a;
       border-radius: 20px;
-      padding: .1vw;
+      padding: .3vw;
       justify-content: center;
       align-items: center;
       border:7px solid #e77d19;
       cursor: pointer;
       text-align: center;
-      margin: 5vw;
+      margin: 3vw;
+
+      border: 2px solid rgb(216, 110, 10);
+      border-radius: 50px;
+      color: white;
+
+      background-color: #39444A;
+
   }
 
   #option-button:hover{
@@ -135,6 +156,8 @@
   display: flex;
   flex-direction: column;
   
+  line-height: 2;
+  
 }
 
 
@@ -146,4 +169,7 @@
   width: 50%;
   height: 50px;
   font-size:50px;
+
+  color: #ffffff;
+  background-color: #39444A;
 }

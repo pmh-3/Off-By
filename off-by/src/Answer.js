@@ -2,6 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import './Answer.css';
 import RuleSlider from './RuleSlider';
+import ToLink from './public/ToLink.png';
 
 
 function Answer({offBy, guess, handleNextQ, question}) {
@@ -20,8 +21,9 @@ function Answer({offBy, guess, handleNextQ, question}) {
           <img className = 'image' src={question.image} />
         </div>
         <div className = 'column'>
+
           <a className ='blurb' style={{ textDecoration: 'none' }} href={question.link} target="_blank">
-            {question.blurb}
+            {question.blurb}          <img id="toLink-image" src={ToLink} alt="click here"  />
           </a>
         </div>
       </div> 
@@ -38,8 +40,8 @@ function Answer({offBy, guess, handleNextQ, question}) {
         </div>
       </div>
         <div id='button-box' onClick={() => handleNextQ()}> 
-          <div id="vl"></div>
           <div id='arrow-stack'>
+            <div id='next-text'>NEXT</div>
             <div className="arrow right"></div>
             <div className="arrow right"></div>
             <div className="arrow right"></div>
