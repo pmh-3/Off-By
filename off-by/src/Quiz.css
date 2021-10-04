@@ -6,7 +6,7 @@
   height: 90vh;
   width: 90vw;
   grid-template-columns: .25fr 1fr .25fr;
-  grid-template-rows: .5fr 1fr .3fr .2fr;
+  grid-template-rows: .5fr .5fr .3fr .2fr;
 
   grid-template-areas: 
       "timer question-count question-count"
@@ -14,6 +14,7 @@
       "inputs inputs inputs"
       "answer answer answer";
   grid-gap: 0.2rem;
+  background-color: #00A3E0;
 }
 
 
@@ -25,7 +26,7 @@
   display: flex;
   flex-direction: column;
   grid-area: question-section;
-  margin: 1%;
+  margin: 2vw;
 }
 
 .upper-ribbon {
@@ -35,31 +36,25 @@
 }
 
 #slider {
-  color: #3880ff;
-    height: 20px;
-    padding: 15px 0;
-    
-    margin: 50;
-
-    
+  color: #032238;
 }
 
 #track {
   height: 10px;
-  background-color: #3880ff;
-  color: #3880ff;
+
+  color: #032238;
 }
 
 #rail {
   height:10px;
   opacity: 1;
-  background-color: #3880ff;
+
 }
 
 #timer {
   height: 8vw;
   width: 8vw;
-  background-color: rgb(230, 153, 12);
+  background-color: #FF8200;
   border-radius: 50%;
   text-align: center;
   line-height: 150%;
@@ -100,12 +95,20 @@
 
   cursor: pointer;
   border-top: 5vw solid transparent;
-  border-left: 10vw solid #e77d19;
+  border-left: 10vw solid #FF8200;
   border-bottom: 5vw solid transparent;
 
   float: right;
 }
 
+#show-answer:hover {
 
+  cursor: pointer;
+  border-top: 5vw solid transparent;
+  border-left: 10vw solid #ffffff;
+  border-bottom: 5vw solid transparent;
+
+  float: right;
+}
 
 

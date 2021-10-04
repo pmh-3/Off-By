@@ -17,52 +17,76 @@ function Quiz({handleScore}) {
 	const [guess, setGuess] = useState(0);
 	const [offBy, setOffBy] = useState(0);
 
+				//To fix issue of blank intial quiz, add a .then flag to allow for quiz to show
+			//maybe simply refresh the page after init
+
 	const quizLength = 10;
 
 	useEffect(()=>{
-		for(let number =0; number < 10; number++){
-			callBackendAPI().then(res =>
-					setQuestions(qStore =>[
-						... qStore, {
-						question: {
-							num: number,
-							id: res.id, 
-							questionText: res.questionText,
-							answer: res.answer,
-							answerText: res.answerText,
-							min: res.min,
-							max: res.max,
-							units: res.units,
-							category: res.category,
-							link: res.link,		
-							image: res.image,
-							blurb: res.blurb,
-							by: res.by,
-							step: res.step,					
-							}
-						}]
-				).then((number == 0) ? () => setQuestion(
-						{
-							num: number,
-							id: res.id, 
-							questionText: res.questionText,
-							answer: res.answer,
-							answerText: res.answerText,
-							min: res.min,
-							max: res.max,
-							units: res.units,
-							category: res.category,
-							link: res.link,		
-							image: res.image,
-							blurb: res.blurb,
-							by: res.by,			
-							step: res.step,	
-						}): null))
-			//To fix issue of blank intial quiz, add a .then flag to allow for quiz to show
-			//maybe simply refresh the page after init
-			.catch(err => console.log(err));
-		}
+			
+			callBackendAPI().then((res) =>{
+				populate(res);
+			}).then(()=> addPlay());
+
 	}, [])
+
+	
+	const addPlay = async (e) => {
+		const response = await fetch('/addPlay', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: 'hi',
+		});
+		const body = await response.text();
+		console.log(body);	
+	}
+
+	const populate = (res) =>{
+		for(let number =0; number < 10; number++){
+			setQuestions(qStore =>[
+				... qStore, {
+				question: {
+					num: number,
+					id: res.Q[number].ID, 
+					questionText: res.Q[number].Question,
+					answer: res.Q[number].Answer,
+					answerText: res.Q[number].AnswerText,
+					min: res.Q[number].Min,
+					max: res.Q[number].Max,
+					units: res.Q[number].Units,
+					category: res.Q[number].Category,
+					link: res.Q[number].Link,		
+					image: res.Q[number].Image,
+					blurb: res.Q[number].Blurb,
+					by: res.Q[number].By,
+					step: res.Q[number].Step,					
+					}
+				}]
+			);
+
+			if(number == 0) {
+				setQuestion(
+					{
+						num: number,
+						id: res.Q[number].ID, 
+						questionText: res.Q[number].Question,
+						answer: res.Q[number].Answer,
+						answerText: res.Q[number].AnswerText,
+						min: res.Q[number].Min,
+						max: res.Q[number].Max,
+						units: res.Q[number].Units,
+						category: res.Q[number].Category,
+						link: res.Q[number].Link,		
+						image: res.Q[number].Image,
+						blurb: res.Q[number].Blurb,
+						by: res.Q[number].By,
+						step: res.Q[number].Step,		
+					});
+				}
+			}
+	}
 
 
 	useEffect(()=>{
@@ -81,7 +105,7 @@ function Quiz({handleScore}) {
 	};
 
 	const calcOffBy = () => {
-		var offByNum = abs(parseInt((question.answer) - parseInt(guess)));
+		var offByNum = abs(parseFloat((question.answer) - parseFloat(guess)));
 		offByNum = offByNum/((parseInt(question.max) - parseInt(question.min)));
 		offByNum = ((100*offByNum).toPrecision(3));
 		setOffBy(offByNum)

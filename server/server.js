@@ -1,10 +1,11 @@
+const { query } = require('express');
 const express = require('express'); 
+const {readFileSync, writeFileSync} = require('fs');
 const app = express(); 
 const port = process.env.PORT || 5000; 
 var mysql = require('mysql');
+const util = require('util');
 
-app.use(express.json());
-app.use(express.urlencoded());
 
 var con = mysql.createConnection({
 
@@ -12,7 +13,7 @@ var con = mysql.createConnection({
     user: "root",
     password: "Catchfire3@**$",
     database: "obdb"
-});
+}); 
   
 //DB INITIALIZATION 
 con.connect(function(err) {
@@ -81,60 +82,247 @@ con.connect(function(err) {
 
 app.listen(port, () => console.log(`Listening on port ${port}`)); 
 
-var json;
-let sentQs = [];
+
+var questionTotal = 26;
+
 
 con.connect(function(err){
+
     app.get('/getQuestions', (req, res) => {
+        var sentQs = [];
 
-        questionTotal = 26;
-        let randomNumber = Math.floor(Math.random()*questionTotal)+1;  
+            /*
 
-        while(sentQs.includes(randomNumber)){
-            randomNumber = Math.floor(Math.random()*questionTotal)+1;
+            async function example1 () {
+                const mysql = require('mysql2/promise');
+                const conn = await mysql.createConnection({ database: test });
+                let [rows, fields] = await conn.execute('select ?+? as sum', [2, 2]);
+              }
+              */
+
+            var qArr =[];
+            var qNum = [];
+            var questions = [];
+            for(let i=0; i<10; i++){
+                let randomNumber = Math.floor(Math.random()*questionTotal)+1;  
+                while(sentQs.includes(randomNumber)){
+                    randomNumber = Math.floor(Math.random()*questionTotal)+1;   
+                    console.log('loop doop');     
+                }
+               console.log(randomNumber);
+               qNum.push(randomNumber);
+                sentQs.push(randomNumber);
+                if(sentQs.length>=questionTotal){
+                    sentQs = [];
+                }
+            }  
+            console.log(qNum);
+
+            var sql = 'SELECT * FROM questions WHERE ID in (' + mysql.escape(qNum[0]) + ','+ mysql.escape(qNum[1])+ ','+ mysql.escape(qNum[2])+ ','+ mysql.escape(qNum[3])+ ','+ mysql.escape(qNum[4])+ ','+ mysql.escape(qNum[5])+ ','+ mysql.escape(qNum[6])+ ','+ mysql.escape(qNum[7])+ ','+ mysql.escape(qNum[8])+ ','+ mysql.escape(qNum[9])+ ')';
+            con.query(sql, function (err, result) {  
+                if (err) throw err;
+
+                for(var i of result){
+                    qArr.push(i)
+                }
+
+                //console.log(result);
+
+                var T = Object.values(JSON.parse(JSON.stringify(qArr)));
+                T.forEach((v) => questions.push(v));  
+                
+       
+    
+          //  console.log(questions);
+        
+                res.send({
+                    Q: [ {
+                        ID: questions[0].ID,
+                        Question: questions[0].Question,
+                        Answer: questions[0].Answer,
+                        Min: questions[0].Min,
+                        Max: questions[0].Max,
+                        Units: questions[0].Units,
+                        AnswerText: questions[0].AnswerText,
+                        Blurb: questions[0].Blurb,
+                        Link: questions[0].Link,
+                        Image: questions[0].Image,
+                        By: questions[0].By,
+                        Step: questions[0].Step,
+                        Category: questions[0].Category
+                    },
+                    {
+                        ID: questions[1].ID,
+                        Question: questions[1].Question,
+                        Answer: questions[1].Answer,
+                        Min: questions[1].Min,
+                        Max: questions[1].Max,
+                        Units: questions[1].Units,
+                        AnswerText: questions[1].AnswerText,
+                        Blurb: questions[1].Blurb,
+                        Link: questions[1].Link,
+                        Image: questions[1].Image,
+                        By: questions[1].By,
+                        Step: questions[1].Step,
+                        Category: questions[1].Category
+                    },
+                    {
+                        ID: questions[2].ID,
+                        Question: questions[2].Question,
+                        Answer: questions[2].Answer,
+                        Min: questions[2].Min,
+                        Max: questions[2].Max,
+                        Units: questions[2].Units,
+                        AnswerText: questions[2].AnswerText,
+                        Blurb: questions[2].Blurb,
+                        Link: questions[2].Link,
+                        Image: questions[2].Image,
+                        By: questions[2].By,
+                        Step: questions[2].Step,
+                        Category: questions[2].Category
+                    },
+                    {
+                        ID: questions[3].ID,
+                        Question: questions[3].Question,
+                        Answer: questions[3].Answer,
+                        Min: questions[3].Min,
+                        Max: questions[3].Max,
+                        Units: questions[3].Units,
+                        AnswerText: questions[3].AnswerText,
+                        Blurb: questions[3].Blurb,
+                        Link: questions[3].Link,
+                        Image: questions[3].Image,
+                        By: questions[3].By,
+                        Step: questions[3].Step,
+                        Category: questions[3].Category
+                    },
+                    {
+                        ID: questions[4].ID,
+                        Question: questions[4].Question,
+                        Answer: questions[4].Answer,
+                        Min: questions[4].Min,
+                        Max: questions[4].Max,
+                        Units: questions[4].Units,
+                        AnswerText: questions[4].AnswerText,
+                        Blurb: questions[4].Blurb,
+                        Link: questions[4].Link,
+                        Image: questions[4].Image,
+                        By: questions[4].By,
+                        Step: questions[4].Step,
+                        Category: questions[4].Category
+                    },
+                    {
+                        ID: questions[5].ID,
+                        Question: questions[5].Question,
+                        Answer: questions[5].Answer,
+                        Min: questions[5].Min,
+                        Max: questions[5].Max,
+                        Units: questions[5].Units,
+                        AnswerText: questions[5].AnswerText,
+                        Blurb: questions[5].Blurb,
+                        Link: questions[5].Link,
+                        Image: questions[5].Image,
+                        By: questions[5].By,
+                        Step: questions[5].Step,
+                        Category: questions[5].Category
+                    },
+                    {
+                        ID: questions[6].ID,
+                        Question: questions[6].Question,
+                        Answer: questions[6].Answer,
+                        Min: questions[6].Min,
+                        Max: questions[6].Max,
+                        Units: questions[6].Units,
+                        AnswerText: questions[6].AnswerText,
+                        Blurb: questions[6].Blurb,
+                        Link: questions[6].Link,
+                        Image: questions[6].Image,
+                        By: questions[6].By,
+                        Step: questions[6].Step,
+                        Category: questions[6].Category
+                    },
+                    {
+                        ID: questions[7].ID,
+                        Question: questions[7].Question,
+                        Answer: questions[7].Answer,
+                        Min: questions[7].Min,
+                        Max: questions[7].Max,
+                        Units: questions[7].Units,
+                        AnswerText: questions[7].AnswerText,
+                        Blurb: questions[7].Blurb,
+                        Link: questions[7].Link,
+                        Image: questions[7].Image,
+                        By: questions[7].By,
+                        Step: questions[7].Step,
+                        Category: questions[7].Category
+                    },
+                    {
+                        ID: questions[8].ID,
+                        Question: questions[8].Question,
+                        Answer: questions[8].Answer,
+                        Min: questions[8].Min,
+                        Max: questions[8].Max,
+                        Units: questions[8].Units,
+                        AnswerText: questions[8].AnswerText,
+                        Blurb: questions[8].Blurb,
+                        Link: questions[8].Link,
+                        Image: questions[8].Image,
+                        By: questions[8].By,
+                        Step: questions[8].Step,
+                        Category: questions[8].Category
+                    },
+                    {
+                        ID: questions[9].ID,
+                        Question: questions[9].Question,
+                        Answer: questions[9].Answer,
+                        Min: questions[9].Min,
+                        Max: questions[9].Max,
+                        Units: questions[9].Units,
+                        AnswerText: questions[9].AnswerText,
+                        Blurb: questions[9].Blurb,
+                        Link: questions[9].Link,
+                        Image: questions[9].Image,
+                        By: questions[9].By,
+                        Step: questions[9].Step,
+                        Category: questions[9].Category
+                    },
+                    
+                    ]
+                });
+
+            });
+    }); 
+
+
+    
+    app.get('/getPlays', (req, res) => {
+        console.log("getting plays");
+
+        const count = readFileSync('./count.txt', 'utf-8');
+
+        console.log('count ', String(count));
+
+        res.send({
+            plays: String(count)
+        })
+
+    });
+
+    app.post('/addPlay', (req, res) => {
+
+        const count = readFileSync('./count.txt', 'utf-8');
+    
+        const newCount = parseInt(count) + 1
+
+        writeFileSync('./count.txt', String(newCount));
+        console.log('count ', newCount);
+
+        res.send(
+        `I received your POST request. This is what you sent me: ${req.body}`,
+        );
+    });
+
             
-        }
-        console.log(randomNumber);
-        sentQs.push(randomNumber);
-
-        var sql = 'SELECT * FROM questions WHERE ID = ' + mysql.escape(randomNumber);
-        con.query(sql, function (err, result) {
-            if (err) throw err;
-
-            var string = JSON.stringify(result);
-            json =  JSON.parse(string);
-        });
-     
-    //console.log(questions[randomNumber].questionText);
-    res.send(
-        { 
-            id: randomNumber,
-            questionText: json[0].Question,
-            answer: json[0].Answer,
-            answerText: json[0].AnswerText,
-            min: json[0].Min,
-            max: json[0].Max,
-            units: json[0].Units,
-            category: json[0].Category,
-            link: json[0].Link,
-            blurb: json[0].Blurb,
-            by: json[0].By,
-            image: json[0].Image,
-            step: json[0].Step
-        }        
-    );
-    //console.log(json[0].Answer);
-
-    if(sentQs.length>=questionTotal){
-        sentQs = [];
-    }
-}); 
-
-});
-
-con.connect(function(err){
-    var leaderCount = 20;
-
     app.get('/getLeaderBoard', (req, res) => {
         console.log("getting LB");
 
@@ -168,11 +356,11 @@ con.connect(function(err){
             for(var i of result){
                 LBarr.push(i)
             }
-
+    
             const leaders = Object.values(JSON.parse(JSON.stringify(LBarr)));
             leaders.forEach((v) => LB.push(v));      
             console.log(LB);
-   
+    
             res.send(
                 {
                    L:[
@@ -203,7 +391,6 @@ con.connect(function(err){
               
         }); 
 
-    });
 
     app.post('/addLeader', (req, res) => {
         var Name = req.body.name.name;
@@ -221,8 +408,12 @@ con.connect(function(err){
         `I received your POST request. This is what you sent me: ${req.body.name}`,
         );
     });
+
+}); 
 });
 
+
+/*
 const questions = [
     {
         questionText: 'How tall is Mt.Everest?',
@@ -361,3 +552,4 @@ const questions = [
         image: 'https://www.worldometers.info/img/world_population_density.gif',
     },	
 ]
+*/

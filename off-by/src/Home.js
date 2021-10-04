@@ -35,9 +35,7 @@ function Home() {
         <div></div> 
         <div id="subheader">numbers based trivia</div>   
       </div>
-      <div id="logo">
-        <img src={logo} alt="logo"/>
-      </div>
+
       <div id="slideOut" >
         <div id="slide-button" onClick={handleSlide}>
         Leaderboard
@@ -45,7 +43,7 @@ function Home() {
         <SlideOut handleSlide={handleSlide} isVis={isVis}/>
       </div>
       <div id="otter">
-        <img id= "otter-image" src={otter} alt="otter"  />
+        <img id="otter-image" src={otter} alt="otter"  />
         <div id="instructions">
           <div id="demo-slider">
             <Slider min = {0} max = {100} units = {"otters"} step= {1} handleGuessChange ={handleGuessChange} />
@@ -53,7 +51,6 @@ function Home() {
           <h3></h3>
           <h3>Use the slider to make your best guess </h3>
           <h3>The less you are off by, the better </h3>
-          <h5>Hint: the more otters, the better </h5>
         </div>
       </div>
       <div id="play">

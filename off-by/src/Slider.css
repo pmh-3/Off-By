@@ -16,7 +16,19 @@
     font-size: 3vw;
 }
 
+#ans-slider{
+    width: 50%;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    font-size: 3vw;
+    margin: 4%;
+
+}
+
 #slider{
+    color: #004677;
     font-size: 3vw;
     display: flex;
     flex-direction: row;
@@ -38,9 +50,6 @@
     grid-area: input;
     justify-content: center;
     text-align: center;
-
-    margin: 5%;
-
     font-size: 2vw;
     display: flex;
     flex-direction: row;
@@ -63,3 +72,14 @@
     flex-direction: row;
 }
   
+.answer-label{
+    line-height: 1.5;
+    font-size: 1.5vw;        
+    padding: 0,
+}
+
+.guess-label{
+    line-height: 5;
+    font-size: 1.5vw;        
+    padding: 0,
+}

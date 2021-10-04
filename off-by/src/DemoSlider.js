@@ -11,9 +11,9 @@ import './Slider.css';
 const StylishSlider = withStyles({
   root: {
     color: '#3880ff',
-    padding: '15px 0',
+    padding: '1px 0',
     width: "10vw !important",
-    margin: 50,
+    margin: 20,
     height: "20px !important",
   
   },

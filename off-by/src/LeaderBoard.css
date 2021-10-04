@@ -32,3 +32,10 @@
     padding: 2%; 
     margin: 5%;
   }
+
+  #leader-msg{
+    font-size: 1.5vw;
+    text-align: center;
+    margin: 5vh;
+
+  }

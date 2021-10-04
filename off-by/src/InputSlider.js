@@ -10,16 +10,15 @@ import './Slider.css';
 
 const StylishSlider = withStyles({
   root: {
-    color: '#3880ff',
+    color: '#032238',
     padding: '15px 0',
     width: "60vw !important",
-    margin: 50,
-    height: "20px !important",
+    margin: '2vw',
   
   },
   thumb: {
-    height: '50px !important',
-    width: '50px !important',
+    height: '3vh !important',
+    width: '3vh !important',
     backgroundColor: '#e77d19',
     color: '#e77d19',
     border: 'brown',
@@ -32,10 +31,10 @@ const StylishSlider = withStyles({
   track: {
     backgroundColor: '#3880ff',
     color: '#3880ff',
-    height: "14px !important",
+    height: "1vh !important",
   },
   rail: {
-    height: "14px !important",
+    height: "1vh !important",
     opacity: 1,
     backgroundColor: '#3880ff',
   },
@@ -48,8 +47,8 @@ const StylishInput = withStyles({
     width: '50%',
     color: 'white',
     fontColor: 'white',
-    height: 100,  
-    fontSize: '100px',
+    height: '6vh',  
+    fontSize: '10vw',
 
     /* //cant get up and down button to look cool
     '& input[type=number]::-webkit-outer-spin-button': {
@@ -68,10 +67,11 @@ const StylishInput = withStyles({
 
 
 function InputSlider({min, max, units, step, handleGuessChange}) {
-  const [value, setValue] = React.useState(min);
+  const [value, setValue] = useState(min);
 
   useEffect(() =>{
-    setValue(min)
+    setValue(min);
+    handleGuessChange(min);
 
   },[min])
 
@@ -95,6 +95,23 @@ function InputSlider({min, max, units, step, handleGuessChange}) {
 
   return (
     <div className= 'question-container'>
+      <div id="input-box">
+        <StylishInput   
+                id= 'input'      
+                value={value}
+                onChange={handleInputChange}
+                onBlur={handleBlur}
+                inputProps={{
+                  step: step,
+                  min: parseInt(min),
+                  max: parseInt(max),
+                  type: 'number',
+                }}
+              />     
+        <div id='units'> 
+          {units}
+        </div> 
+      </div>
       <div id="slider-box">
         
           <div id="min">
@@ -115,23 +132,7 @@ function InputSlider({min, max, units, step, handleGuessChange}) {
         
       </div>
       
-      <div id="input-box">
-        <StylishInput   
-                id= 'input'      
-                value={value}
-                onChange={handleInputChange}
-                onBlur={handleBlur}
-                inputProps={{
-                  step: step,
-                  min: parseInt(min),
-                  max: parseInt(max),
-                  type: 'number',
-                }}
-              />     
-        <div id='units'> 
-          {units}
-        </div> 
-      </div>
+      
     </div>    
   );
 }

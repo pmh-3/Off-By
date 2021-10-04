@@ -15,15 +15,15 @@ function LeaderBoard({score, setLeader}) {
     
     useEffect(()=>{
         refreshLB().then((num) => init());
+        
     },[])
 
     useEffect(()=>{
-        //Leaderboard duplicates if init is ran again
-      // refreshLB().then((num) => init());
-    },[flag])
+        checkLeader(score);
+        
+    },[LB])
 
     const init = ()=>{
-        //setLB([]); //doesnt do anything
 
             getLB().then(res =>{
                 for(let i=0; i<21;i++){
@@ -61,11 +61,13 @@ function LeaderBoard({score, setLeader}) {
 
             if(parseInt(scoretobeat) >= parseInt(score)){
                 setLeader();
+                setFlag("here");
             }
         }
     }
 
-    checkLeader(score);
+
+ 
    
     return(
         <>

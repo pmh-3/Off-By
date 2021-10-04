@@ -1,21 +1,20 @@
 import React, {useState, useRef, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import './Answer.css';
-import Slider from './InputSlider';
-import ruler from './Ruler.js';
+import RuleSlider from './RuleSlider';
+
 
 function Answer({offBy, guess, handleNextQ, question}) {
 
   return (
     <>
     <div className='answer-container'>
-      <div id='score'>
-        <h3>Your guess of {guess} was</h3>
+      <div id='a-score'>
         <div className='title'>Off By {offBy} %</div>
-        <h3>{question.answerText}</h3>
-        <hr id='hzline'></hr>
-        <ruler min='0' max='100' guess='20' answer='50' offBy></ruler>
+        <RuleSlider min={question.min} max={question.max} answer={question.answer} guess={guess} step={question.step}/>
+        <h2>{question.answerText}</h2>
       </div>
+      
       <div id = 'facts'>
         <div className = 'column'>
           <img className = 'image' src={question.image} />
@@ -46,9 +45,6 @@ function Answer({offBy, guess, handleNextQ, question}) {
             <div className="arrow right"></div>
             <div className="arrow right"></div>
           </div> 
-                
-            
-            
         </div>
       </div>
     </>
