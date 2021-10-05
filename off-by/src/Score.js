@@ -38,7 +38,7 @@ function Score({score}) {
                 onChange={(e) => setName(e.target.value)}
             />
             <div id="options">
-              <div id='option-button' onClick={()=>setadded(true)} >Enter</div>
+              <div id='option-button' onClick={()=>addLeader().then(setFlag(false))} >Enter</div>
               <div id='option-button' onClick={()=>history.push("/")} >No Thanks</div>
             </div>
         </div>
@@ -56,25 +56,26 @@ function Score({score}) {
   }
 
   const addLeader = async (e) => {
-    const response = await fetch('/addLeader', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name: {name}, score: {score},}),
-    });
-    const body = await response.text();
-    console.log(body);
-    
+    var Sendname = {name};
+    var sendScore = {score};
+
+    const requestOptions= {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({name: "{Sendname}", score: "{sendScore}"})
+    };
+
+    fetch('/addLeader', requestOptions);
+
+
     //window.location.reload(false);
 }
 
   return (
     <>
-   
     <div className="score-container">
       <div id="score">
-        <div>Average Score: {score}%</div>
+        <div>Average Score: {score}% {name}</div>
         <div id="share" onClick={() => copyLink()}>{isCopied}</div>
       </div>
       <div id='lb-box'> 
@@ -89,7 +90,10 @@ function Score({score}) {
               screen
           :
             <div>
+
+              <div id='congrats'>
               Great Job!!
+              </div>
               <div id="options">
                 <div id="option-button" onClick={() => history.push("/Quiz")}>Play Again</div>   
                 <div id="option-button" onClick={() => history.push("/")}>Home</div>

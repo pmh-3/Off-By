@@ -101,19 +101,18 @@ function RuleSlider({min, max, guess, answer, step}) {
                     backgroundColor: '#162936',
                     borderRadius: '40px',
                     margin: '-1vw',
-                    border:'5px solid #39444A',
-                    boxShadow: '0px -7px 23px 1px black',
+                    border: '.1vw solid #60473b',
+
                     
                   },
                   '& .MuiSlider-mark': {
                     backgroundColor: '#F4762D',
                     height: 180,
                     width: 10,
-                    left: '15px',
                     top: '40px',
                     borderRadius: '40px',
 
-                    border:'3px solid #39444A',
+                    border: '.1vw solid #60473b',
 
                   },
                   '& .MuiSlider-markLabel': {
@@ -130,8 +129,8 @@ function RuleSlider({min, max, guess, answer, step}) {
                     backgroundColor: '#162936',
                     borderRadius: '40px',
 
-                    border:'5px solid #39444A',
-                    boxShadow: '0px -7px 23px 1px black',
+                    border: '.1vw solid #60473b',
+
                   },
               }}
             />

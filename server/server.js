@@ -390,13 +390,15 @@ con.connect(function(err){
             );
               
         }); 
+    }); 
 
 
     app.post('/addLeader', (req, res) => {
-        var Name = req.body.name.name;
-        var Score = req.body.score.score;
         console.log(req.body);
-        console.log(req.body.score.score);
+
+        var Score = req.body.score.score;
+        var Name = req.body.name;
+
 
         var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES ('"+Name+"','"+Score+"');"
         con.query(addLeader, function (err, result) {
@@ -409,7 +411,6 @@ con.connect(function(err){
         );
     });
 
-}); 
 });
 
 
