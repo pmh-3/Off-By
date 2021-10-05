@@ -7,6 +7,9 @@ var mysql = require('mysql');
 const util = require('util');
 
 
+app.use(express.json());
+app.use(express.urlencoded());
+
 var con = mysql.createConnection({
 
     host: "localhost",
@@ -14,6 +17,8 @@ var con = mysql.createConnection({
     password: "Catchfire3@**$",
     database: "obdb"
 }); 
+
+
   
 //DB INITIALIZATION 
 con.connect(function(err) {
@@ -322,6 +327,25 @@ con.connect(function(err){
         );
     });
 
+    app.post('/addLeader', (req, res) => {
+        console.log(req.body);
+
+        var Score = req.body.score;
+        var Name = req.body.name;
+
+
+        var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES ('"+Name+"','"+Score+"');"
+        con.query(addLeader, function (err, result) {
+            if (err) throw err;
+            console.log("Leader Added");
+            console.log(Score, Name);
+        });
+
+        res.send(
+        `I received your POST request. This is what you sent me: ${req.body.name}`,
+        );
+    });
+
             
     app.get('/getLeaderBoard', (req, res) => {
         console.log("getting LB");
@@ -393,23 +417,7 @@ con.connect(function(err){
     }); 
 
 
-    app.post('/addLeader', (req, res) => {
-        console.log(req.body);
 
-        var Score = req.body.score.score;
-        var Name = req.body.name;
-
-
-        var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES ('"+Name+"','"+Score+"');"
-        con.query(addLeader, function (err, result) {
-            if (err) throw err;
-            console.log("Leader Added");
-        });
-
-        res.send(
-        `I received your POST request. This is what you sent me: ${req.body.name}`,
-        );
-    });
 
 });
 

@@ -14,13 +14,7 @@ function Score({score}) {
   const [isAdded, setadded] = useState(false);
   const [flag, setFlag] = useState(false);
   const [isCopied, setCopied] = useState('Share Link');
-
-  useEffect(()=>{
-    if(isAdded){
-      addLeader().then(history.push("/"));
-    }      
-  },[isAdded])
-  
+  const nameRef = useRef();
 
   const setLeader = () => {
     setFlag(true);
@@ -34,11 +28,11 @@ function Score({score}) {
             <input
                 className= "input"
                 type="text"
-                value={name}
+
                 onChange={(e) => setName(e.target.value)}
             />
             <div id="options">
-              <div id='option-button' onClick={()=>addLeader().then(setFlag(false))} >Enter</div>
+              <div id='option-button' onClick={()=>addLeader()} >Enter</div>
               <div id='option-button' onClick={()=>history.push("/")} >No Thanks</div>
             </div>
         </div>
@@ -55,9 +49,28 @@ function Score({score}) {
     setCopied('Link Copied');
   }
 
+
+  const addLeader =  () => {
+
+  var Name = 'ddd';
+
+    const leader = {Name, score};
+
+		fetch('/addLeader', {
+			method: 'POST',
+			headers: {"Content-Type": "application/json",	},
+			body: JSON.stringify(leader)
+		})
+
+	}
+
+  /*
   const addLeader = async (e) => {
     var Sendname = {name};
     var sendScore = {score};
+
+
+    fetch()
 
     const requestOptions= {
       method: "POST",
@@ -70,6 +83,7 @@ function Score({score}) {
 
     //window.location.reload(false);
 }
+*/
 
   return (
     <>
