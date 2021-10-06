@@ -10,7 +10,7 @@
     height: 100vh;
     width: 100vw;
     grid-template-columns: .25fr 1.5fr .4fr;
-    grid-template-rows: .5fr 1fr;
+    grid-template-rows: .2fr .5fr;
 
     grid-template-areas: 
         "slideout banner banner"
@@ -31,7 +31,7 @@
 
   #slide-button{
     cursor: pointer;
-    background-color: #39444A;
+    background-color: #162936;
     
     border: .2vw solid #60473b;
     width: 4vw;
@@ -73,33 +73,41 @@
   }
 
   #otter{
+
       grid-area: otter;
       align-items: left;
       display: flex;
       flex-direction: row;
   }
 
-  #otter-image{
-    object-fit: cover;
+  #image-cont{
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .otter-image{
     width: 30vw;
-    height: 50vh;
-    float: center;
+    height: auto;
+    object-fit: contain;
+
   }
 
   #instructions{
-    background-color: #39444A;
+    
     width: 30vw;
     height: 40vh;
     border: .2vw solid #60473b;
 
-    padding: 30px;
+    padding: 2vw;
     margin: 2px;
     margin-top: 4vh;
     align-items: center;
-    font-size: 1vw;
+    font-size: 1.2vw;
     display: flex;
     flex-direction: column;
-    border-radius: 30px;
+    border-radius: 3vw;
+
 
     color: #ffffff;
     background-color: #162936;
@@ -125,10 +133,10 @@
   #play{
 
     grid-area: play;
-    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin-top: 9vh;
+
   }
 
   .play-button{

@@ -20,13 +20,14 @@
 #ans-slider{
     width: 50%;
     justify-content: center;
-    text-align: center;
+    text-align: bottom;
     display: flex;
     flex-direction: row;
     font-size: 3vw;
     margin: 4%;
 
 }
+
 
 #slider{
     

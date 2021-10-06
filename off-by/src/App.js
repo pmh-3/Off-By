@@ -24,7 +24,7 @@ function App() {
   <Route path="/" exact render={() => <Home />} />
   <Route path="/Slider" render={() => <Slider />} />
   <Route path="/Quiz" render={() => <Quiz handleScore ={handleScore} />} />
-  <Route path="/Score" render={() => <Score score ={score} />} />
+  <Route path="/Score" render={() => <Score Xscore ={score} />} />
   </Router>
   </>
   )

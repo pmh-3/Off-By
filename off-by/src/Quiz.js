@@ -26,21 +26,21 @@ function Quiz({handleScore}) {
 			
 			callBackendAPI().then((res) =>{
 				populate(res);
-			}).then(()=> addPlay());
+			});
+			addPlay();
 
 	}, [])
 
 	
 	const addPlay = async (e) => {
-		const response = await fetch('/addPlay', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: 'hi',
-		});
-		const body = await response.text();
-		console.log(body);	
+
+		const response = await fetch('/addPlay');
+		const body = await response.json();
+	
+		if (response.status !== 200) {
+		  throw Error(body.message) 
+		}
+
 	}
 
 	const populate = (res) =>{

@@ -112,9 +112,9 @@ con.connect(function(err){
                 let randomNumber = Math.floor(Math.random()*questionTotal)+1;  
                 while(sentQs.includes(randomNumber)){
                     randomNumber = Math.floor(Math.random()*questionTotal)+1;   
-                    console.log('loop doop');     
+                    //console.log('loop doop');     
                 }
-               console.log(randomNumber);
+               //console.log(randomNumber);
                qNum.push(randomNumber);
                 sentQs.push(randomNumber);
                 if(sentQs.length>=questionTotal){
@@ -305,7 +305,7 @@ con.connect(function(err){
 
         const count = readFileSync('./count.txt', 'utf-8');
 
-        console.log('count ', String(count));
+        console.log('getting count: ', String(count));
 
         res.send({
             plays: String(count)
@@ -313,38 +313,33 @@ con.connect(function(err){
 
     });
 
-    app.post('/addPlay', (req, res) => {
+    app.get('/addPlay', (req, res) => {
 
         const count = readFileSync('./count.txt', 'utf-8');
-    
         const newCount = parseInt(count) + 1
 
         writeFileSync('./count.txt', String(newCount));
-        console.log('count ', newCount);
+        console.log('new count: ', newCount);
 
-        res.send(
-        `I received your POST request. This is what you sent me: ${req.body}`,
-        );
     });
 
     app.post('/addLeader', (req, res) => {
+        var Name = req.body.name.name;
+        var Score = req.body.score.score;
         console.log(req.body);
-
-        var Score = req.body.score;
-        var Name = req.body.name;
-
+        //console.log(req.body.score.score);
 
         var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES ('"+Name+"','"+Score+"');"
         con.query(addLeader, function (err, result) {
             if (err) throw err;
             console.log("Leader Added");
-            console.log(Score, Name);
         });
 
         res.send(
         `I received your POST request. This is what you sent me: ${req.body.name}`,
         );
     });
+
 
             
     app.get('/getLeaderBoard', (req, res) => {

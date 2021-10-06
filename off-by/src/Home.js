@@ -43,7 +43,9 @@ function Home() {
         <SlideOut handleSlide={handleSlide} isVis={isVis}/>
       </div>
       <div id="otter">
-        <img id="otter-image" src={otter} alt="otter"  />
+        <div id="image-cont">
+          <img className="otter-image" src={otter} alt="otter"  />
+        </div>
         <div id="instructions">
           <div id="demo-slider">
             <Slider min = {0} max = {100} units = {"otters"} step= {1} handleGuessChange ={handleGuessChange} />

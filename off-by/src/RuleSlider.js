@@ -20,8 +20,8 @@ const StylishSlider = withStyles({
   
   },
   thumb: {
-    height: '50px !important',
-    width: '50px !important',
+    height: '0px !important',
+    width: '0px !important',
     backgroundColor: '#e77d19',
     color: '#e77d19',
     border: 'brown',
@@ -100,29 +100,29 @@ function RuleSlider({min, max, guess, answer, step}) {
                     height: '2vw',
                     backgroundColor: '#162936',
                     borderRadius: '40px',
-                    margin: '-1vw',
+                    margin: '-2vh',
                     border: '.1vw solid #60473b',
-
+                    left: '-2vw !important'
                     
                   },
                   '& .MuiSlider-mark': {
                     backgroundColor: '#F4762D',
-                    height: 180,
+                    height: '6vh',
                     width: 10,
-                    top: '40px',
+                    top: '30px',
                     borderRadius: '40px',
 
                     border: '.1vw solid #60473b',
 
                   },
                   '& .MuiSlider-markLabel': {
-                    lineHeight: 1,
+                    lineHeight: '1',
                     fontSize: '1.5vw',        
                     padding: 0,
                     color: 'whitesmoke',
                     fontSize: '2vw',      
                     padding: 1,
-                    marginTop:'5vh',
+                    marginTop:'3vh',
                     width: '15vw',
                     height: '2vw',
 

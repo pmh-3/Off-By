@@ -10,7 +10,7 @@ import './Slider.css';
 
 const StylishSlider = withStyles({
   root: {
-    color: '#0f4c81',
+    color: '#91d4ed',
     padding: '1px 0',
     width: "10vw !important",
     margin: 20,
@@ -18,10 +18,10 @@ const StylishSlider = withStyles({
   
   },
   thumb: {
-    height: '50px !important',
-    width: '50px !important',
+    height: '1vw !important',
+    width: '1vw !important',
     backgroundColor: '#ffff',
-    color: '#e77d19',
+    color: '#F4762D',
     border: 'brown',
     marginLeft: 0,
     '&:focus, &:hover, &$active': {
@@ -30,12 +30,12 @@ const StylishSlider = withStyles({
   },
 
   track: {
-    backgroundColor: '#3880ff',
+    backgroundColor: '#91d4ed !important',
     color: '#3880ff',
-    height: "14px !important",
+    height: "1vh !important",
   },
   rail: {
-    height: "14px !important",
+    height: "1vh !important",
     opacity: 1,
     backgroundColor: '#ffff',
   },
@@ -97,6 +97,7 @@ function DemoSlider({min, max, units, step, handleGuessChange}) {
     <div className= 'question-container'>
       <div id="slider-box">
         
+        
           <div id="min">
             {min}
           </div>
@@ -115,23 +116,7 @@ function DemoSlider({min, max, units, step, handleGuessChange}) {
         
       </div>
       
-      <div id="input-box">
-        <StylishInput   
-                id= 'input'      
-                value={value}
-                onChange={handleInputChange}
-                onBlur={handleBlur}
-                inputProps={{
-                  step: step,
-                  min: parseInt(min),
-                  max: parseInt(max),
-                  type: 'number',
-                }}
-              />     
-        <div id='units'> 
-          {units}
-        </div> 
-      </div>
+     
     </div>    
   );
 }
