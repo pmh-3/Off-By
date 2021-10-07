@@ -8,18 +8,18 @@ import {isMobile} from 'react-device-detect';
 
 var screen = <>empty</>;
 
-function Score({Xscore}) {
+function Score({score, resetScore}) {
 
   const history = useHistory();
   const [name, setName] = useState();
   const [isAdded, setadded] = useState(false);
   const [flag, setFlag] = useState(false);
   const [isCopied, setCopied] = useState('Share Link');
-  const [score, setThisScore] = useState(Xscore);
+
 
   useEffect(()=>{
     if(isAdded){
-      addLeader().then(setThisScore(100)).then(history.push("/"));
+      addLeader().then(resetScore()).then(history.push("/"));
     }      
   },[isAdded])
   
@@ -43,7 +43,7 @@ function Score({Xscore}) {
             />
             <div id="options">
               <div id='option-button' onClick={()=>setadded(true)} >Enter</div>
-              <div id='option-button' onClick={()=>history.push("/")} >No Thanks</div>
+              <div id='option-button' onClick={()=>history.push("/")} >Home</div>
             </div>
         </div>
     </>;

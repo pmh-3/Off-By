@@ -1,10 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Oxygen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&family=Montserrat&family=Oxanium&family=Poppins&family=Roboto+Slab&display=swap');
 
 body {
   margin: 0;
-  font-family: 'Oxygen', sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
+  font-family: 'Montserrat', sans-serif;
+
 }
 * {
   color: #ffffff;
@@ -39,6 +43,7 @@ body {
   font-size: 4vw;
   align-items: center;
   word-spacing: 10px;
+  font-family: 'Oxanium', cursive;
 }
 
 .ansNum {
@@ -53,8 +58,6 @@ body {
 }
 
 /* Ruler */
-
-
 
 button {
   width: 200px;

@@ -16,6 +16,10 @@ function App() {
   const handleScore = (avg) => {
       setScore(parseInt(avg))
   }
+
+  const resetScore = () =>{
+    setScore(100);
+  }
   
   return (
   <>
@@ -24,7 +28,7 @@ function App() {
   <Route path="/" exact render={() => <Home />} />
   <Route path="/Slider" render={() => <Slider />} />
   <Route path="/Quiz" render={() => <Quiz handleScore ={handleScore} />} />
-  <Route path="/Score" render={() => <Score Xscore ={score} />} />
+  <Route path="/Score" render={() => <Score score ={score} resetScore = {resetScore}/>} />
   </Router>
   </>
   )

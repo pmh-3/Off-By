@@ -19,7 +19,6 @@ class SlideOut extends Component {
 
                 <LeaderBoard  score = {1000}/>
                 <div id="stats">
-                <div id="stats-title">Stats</div>
                 < Stats id="stats" />
       </div>
           </div>

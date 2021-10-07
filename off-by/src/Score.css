@@ -59,7 +59,7 @@
   #score{
 
       grid-area: score;
-      font-size: 4vw;
+      font-size: 6vw;
       font-family: 'Montserrat', sans-serif;
 
       display: flex;
@@ -67,6 +67,12 @@
       justify-content: center;
 
       line-height: 15vh;
+
+     
+        
+      font-family: 'Oxanium', cursive;
+
+
   }
 
   #otter-box{

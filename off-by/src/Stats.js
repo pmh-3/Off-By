@@ -30,15 +30,15 @@ const getPlays = async () => {
     
     return(
         <>
-        <div className="stats-text">
-            <div id="stat">♦ Number of Questions: 100 </div>
+            <div id="stats-title">Stats</div>     
             <div id="stat">♦ Number of Plays: {plays}</div>
             <div id="stat">♦ Categories: World | Science | Sports |          History | Pop Culture | Variety</div>
             <div id="stat">♦ Click <a href="https://docs.google.com/spreadsheets/d/1I5yc2laufIp2hwiuwaI777xtSDkFYMAlHJt3XjlG0b0/edit?usp=sharing">Here</a> to add a Question</div>
-            <div id="stat">♦ Created By Peter Heitkemper... AKA Waffler</div>
+            <div id="stat">♦ Created By Peter Heitkemper (AKA Waffler) </div>
             <div id="stat">♦ Built using React, Node js, MySQL</div>
-        </div>
-        
+            <div id="stat">♦ 2,300+ lines of code in Javascript, HTML, CSS</div>
+
+
         </>
     );
 }

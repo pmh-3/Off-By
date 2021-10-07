@@ -1,22 +1,23 @@
 
-  
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
   #stats{
     background-color: #39444A;
     grid-area: stats;
-    font-size: 30px; 
     width: 21vw;
-    height: 28vh;
-    align-items: center;
+    height: 29vh;
+    align-items: left;
     display: flex;
     flex-direction: column;
     border:.2vw solid #60473b;
+
 
     padding: .5vw;
     margin: 1vw;
 
     color: #ffffff;
     background-color: #162936;
-
+    
+    font-family: 'Chakra Petch', sans-serif;
 
 }
 
@@ -24,9 +25,10 @@
 #stats-title {
   font-size: 1.5vw;
   text-align: center;
+  margin-bottom: 1%;
 }
 
 #stat{
-    font-size: .8vw; 
-    margin-bottom: 2%;
+    font-size: .9vw; 
+    margin-bottom: 4%;
 }
