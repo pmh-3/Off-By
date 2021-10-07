@@ -3,10 +3,7 @@ import './LeaderBoard.css'
 
 function LeaderBoard({score, setLeader}) {
 
-    const [name, setName] = useState();
-    const [flag, setFlag] = useState("nuffin");
     const [LB, setLB] = useState([]);
-    const [isadded, setadded] = useState(true);
 
     const refreshLB = ()=>{
         setLB([]);
@@ -47,7 +44,6 @@ function LeaderBoard({score, setLeader}) {
         return body;
     };
 
-
     var screen = <></>;
 
     var scoretobeat;
@@ -61,14 +57,10 @@ function LeaderBoard({score, setLeader}) {
 
             if(parseInt(scoretobeat) >= parseInt(score)){
                 setLeader();
-                setFlag("here");
             }
         }
     }
 
-
- 
-   
     return(
         <>
         {screen}

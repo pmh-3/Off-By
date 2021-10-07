@@ -2,42 +2,28 @@
 
 body {
   margin: 0;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-
   font-family: 'Montserrat', sans-serif;
-
 }
 * {
   color: #ffffff;
 }
 
-.colors {
-  
+.colors { 
   background-color: #00A3E0;
   background-color: #6CD1EF;
   background-color: #00A3E0;
   background-color: #7BC4C4;
 }
 
-body {
-  
-  
-
-  background-color: #53B0AE;
-  
+body { 
+  background-color: #53B0AE; 
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 100%;
-
-
 }
-
-
 
 .title {
   font-size: 4vw;
@@ -56,8 +42,6 @@ body {
   font-size: 24px;
   align-items: center;
 }
-
-/* Ruler */
 
 button {
   width: 200px;
@@ -88,7 +72,6 @@ button {
   cursor: pointer;
   margin-right: 450px;
   margin-bottom: 100px;
-
 }
 
 .correct {
@@ -110,10 +93,4 @@ button:focus {
 button svg {
   margin-right: 5px;
 }
-
-
-/*leaderBoard */
-
-
-/*Stats */
 

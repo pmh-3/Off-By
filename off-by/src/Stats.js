@@ -1,6 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import './Stats.css'
-
 
 function Stats() {
     const [plays, setPlays] = useState(100);
@@ -8,7 +7,6 @@ function Stats() {
         useEffect( ()=>{
             init();
         },[]);
-
 
     const init = ()=>{
 
@@ -26,8 +24,7 @@ const getPlays = async () => {
       throw Error(body.message) 
     }
     return body;
-};
-    
+};  
     return(
         <>
             <div id="stats-title">Stats</div>     
@@ -37,8 +34,6 @@ const getPlays = async () => {
             <div id="stat">♦ Created By Peter Heitkemper (AKA Waffler) </div>
             <div id="stat">♦ Built using React, Node js, MySQL</div>
             <div id="stat">♦ 2,300+ lines of code in Javascript, HTML, CSS</div>
-
-
         </>
     );
 }

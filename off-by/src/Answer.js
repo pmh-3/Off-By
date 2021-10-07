@@ -1,5 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import './Answer.css';
 import RuleSlider from './RuleSlider';
 import ToLink from './public/ToLink.png';
@@ -18,7 +17,7 @@ function Answer({offBy, guess, handleNextQ, question}) {
       
       <div id = 'facts'>
         <div className = 'column'>
-          <img className = 'image' src={question.image} />
+          <img className = 'image' src={question.image} alt='img'/>
         </div>
         <div className = 'column'>
 

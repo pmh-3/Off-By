@@ -1,5 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
   #stats{
     background-color: #39444A;
     grid-area: stats;
@@ -9,18 +8,13 @@
     display: flex;
     flex-direction: column;
     border:.2vw solid #60473b;
-
-
     padding: .5vw;
     margin: 1vw;
-
     color: #ffffff;
     background-color: #162936;
-    
     font-family: 'Chakra Petch', sans-serif;
 
 }
-
 
 #stats-title {
   font-size: 1.5vw;

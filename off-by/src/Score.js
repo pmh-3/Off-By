@@ -1,9 +1,8 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Redirect, useHistory} from "react-router-dom";
 import LeaderBoard from "./LeaderBoard"
 import './Score.css';
 import otter from './public/sea-otter.png';
-import logo from './public/OBlogo.jpg';
 import {isMobile} from 'react-device-detect';
 
 var screen = <>empty</>;
@@ -53,19 +52,11 @@ function Score({score, resetScore}) {
     var copyText = "offby.io";
 
     if (isMobile){
-      setCopied('share offby.io');
-    
+      setCopied('share offby.io');  
     }else{
-      // false for not mobile device
-     navigator.clipboard.writeText(copyText);
-
-      /* Alert the copied text */
+      navigator.clipboard.writeText(copyText);
       setCopied('Link Copied');
-
     }
-    /* Copy the text inside the text field */
-
-
   }
 
   const addLeader = async (e) => {
@@ -78,13 +69,10 @@ function Score({score, resetScore}) {
     });
     const body = await response.text();
     console.log(body);
-    
-    //window.location.reload(false);
 }
 
   return (
     <>
-   
     <div className="score-container">
       <div id="score">
         <div>Average Score: {score}%</div>

@@ -1,14 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
-import { makeStyles, withStyles } from '@mui/styles';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import { withStyles } from '@mui/styles';
 import Slider from '@mui/material/Slider';
-import Input from '@mui/material/Input';
-import VolumeUp from '@mui/icons-material/VolumeUp';
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import './Slider.css';
-
-
 
 const StylishSlider = withStyles({
   root: {
@@ -40,12 +33,7 @@ const StylishSlider = withStyles({
     color: 'white',
 
   },
-
-
   })(Slider);
-
-
-
 
 function RuleSlider({min, max, guess, answer, step}) {
   const [value, setValue] = useState(min);
@@ -63,14 +51,10 @@ function RuleSlider({min, max, guess, answer, step}) {
       value: parseInt(answer),
       label: 'Answer: ' + String(answer),
     },
-
-
   ];
-
 
   const handleSliderChange = (event, newValue) => {
   };
-
 
   return (
       <div id="ans-slider">   
@@ -93,7 +77,6 @@ function RuleSlider({min, max, guess, answer, step}) {
                 width: 300,
                 
                 '& .MuiSlider-valueLabel': {
-
                     fontSize: '2vw',        
                     padding: 1,
                     width: '6vw',
@@ -111,7 +94,6 @@ function RuleSlider({min, max, guess, answer, step}) {
                     width: 10,
                     top: '30px',
                     borderRadius: '40px',
-
                     border: '.1vw solid #60473b',
 
                   },
@@ -125,10 +107,8 @@ function RuleSlider({min, max, guess, answer, step}) {
                     marginTop:'3vh',
                     width: '15vw',
                     height: '2vw',
-
                     backgroundColor: '#162936',
                     borderRadius: '40px',
-
                     border: '.1vw solid #60473b',
 
                   },

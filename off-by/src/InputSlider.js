@@ -1,11 +1,7 @@
-import React, {useState, useRef, useEffect} from 'react';
-import { makeStyles, withStyles } from '@mui/styles';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import React, {useState, useEffect} from 'react';
+import { withStyles } from '@mui/styles';
 import Slider from '@mui/material/Slider';
 import Input from '@mui/material/Input';
-import VolumeUp from '@mui/icons-material/VolumeUp';
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import './Slider.css';
 
 const StylishSlider = withStyles({
@@ -50,18 +46,6 @@ const StylishInput = withStyles({
     height: '6vh',  
     fontSize: '10vw',
 
-    /* //cant get up and down button to look cool
-    '& input[type=number]::-webkit-outer-spin-button': {
-      height: 30,
-      width: 100,
-      borderRadius: 0,
-      paddingLeft: 10,
-      '-webkit-appearance': 'none',
-  },
-  '& input[type=number]::-webkit-inner-spin-button': {
-    color: 'white',
-  }
-  */
   },
 })(Input);
 
@@ -75,7 +59,7 @@ function InputSlider({min, max, units, step, handleGuessChange}) {
 
   },[min])
 
-  const handleSliderChange = (event, newValue) => {
+  const handleSliderChange = (newValue) => {
     setValue(newValue);
     handleGuessChange(newValue);
   };
@@ -128,11 +112,8 @@ function InputSlider({min, max, units, step, handleGuessChange}) {
             </div>
           <div id="max">
             {max}
-          </div>
-        
+          </div>      
       </div>
-      
-      
     </div>    
   );
 }

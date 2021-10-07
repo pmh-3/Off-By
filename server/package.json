@@ -9,7 +9,7 @@
     "nodejs": "^0.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "dev": "nodemon -L src/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

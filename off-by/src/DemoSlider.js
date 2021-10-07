@@ -1,11 +1,7 @@
-import React, {useState, useRef, useEffect} from 'react';
-import { makeStyles, withStyles } from '@mui/styles';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import React, { useEffect} from 'react';
+import { withStyles } from '@mui/styles';
 import Slider from '@mui/material/Slider';
 import Input from '@mui/material/Input';
-import VolumeUp from '@mui/icons-material/VolumeUp';
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import './Slider.css';
 
 const StylishSlider = withStyles({
@@ -95,9 +91,7 @@ function DemoSlider({min, max, units, step, handleGuessChange}) {
 
   return (
     <div className= 'question-container'>
-      <div id="slider-box">
-        
-        
+      <div id="slider-box">      
           <div id="min">
             {min}
           </div>
@@ -112,11 +106,8 @@ function DemoSlider({min, max, units, step, handleGuessChange}) {
             </div>
           <div id="max">
             {max}
-          </div>
-        
-      </div>
-      
-     
+          </div>      
+      </div>   
     </div>    
   );
 }

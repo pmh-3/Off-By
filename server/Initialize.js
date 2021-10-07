@@ -51,8 +51,13 @@ con.connect(function(err) {
         console.log("LB Table created");
     });
 
-    for(let i = 0; i<21; i++){
+    var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES ('Waffler','0');"
+    con.query(addLeader, function (err, result) {
+        if (err) throw err;
+        console.log("Leader Added");
+    });
 
+    for(let i = 0; i<20; i++){
         var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES ('_____','100');"
         con.query(addLeader, function (err, result) {
             if (err) throw err;

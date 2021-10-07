@@ -1,12 +1,8 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Redirect, useHistory} from "react-router-dom";
-import Quiz from './Quiz';
 import Slider from './DemoSlider';
-import LeaderBoard from './LeaderBoard';
-import Stats from './Stats';
 import "./Home.css";
 import otter from './public/otter.png';
-import logo from './public/OBlogo.jpg';
 import SlideOut from './SlideOut';
 
 

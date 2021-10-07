@@ -1,16 +1,15 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 
 function Timer({timesUp}) {
-    const [seconds, setSeconds] = React.useState(30);
+    const [seconds, setSeconds] = useState(30);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (seconds >0){
             setTimeout(() =>setSeconds(seconds-1), 1000);
         } else if(seconds == 0) {     
             setSeconds('Times Up!');
             timesUp();
         }
-
     });
 
     return (

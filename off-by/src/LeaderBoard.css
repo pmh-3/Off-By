@@ -1,26 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Roboto+Mono:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap'); 
+
 .leaderboard {
     width: 21vw;
     height: 60vh;
-
     align-items: left;
     font-size: 1vw;
-    
-
     display: flex;
     flex-direction: column;
-
-
     padding: .5vw;
     margin: 1vw;
-
     border:.2vw solid #60473b;
     color: #ffffff;
     background-color: #162936;
-
-
     font-family: 'Chakra Petch', sans-serif;
   }
   

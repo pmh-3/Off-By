@@ -17,9 +17,6 @@ function Quiz({handleScore}) {
 	const [guess, setGuess] = useState(0);
 	const [offBy, setOffBy] = useState(0);
 
-				//To fix issue of blank intial quiz, add a .then flag to allow for quiz to show
-			//maybe simply refresh the page after init
-
 	const quizLength = 10;
 
 	useEffect(()=>{

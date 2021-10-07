@@ -1,0 +1,60 @@
+version: '3'
+services:
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: myapp-client
+    command: npm start
+    volumes:
+      - ./client/src:/usr/app/src
+      - ./client/public:/usr/app/public
+    depends_on:
+      - server
+    ports:
+      - 3000:3000
+    networks:
+      - app-network
+    environment:
+      - REACT_APP_SERVER=http://localhost:5000
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    tty: true
+
+  server:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile
+    volumes:
+      - ./server/src:/usr/app/src
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - DB_URL=obdb://db:27017
+      - CLIENT=http://localhost:3000
+    networks:
+      - app-network
+    command: /usr/app/node_modules/.bin/nodemon -L src/index.js
+
+  db:
+    image: myslq:
+    volumes:
+      - mysql-data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - app-network
+
+
+networks: 
+  app-network:
+    driver: bridge
+  
+volumes: 
+  mysql-data:
+    driver: local
+
+

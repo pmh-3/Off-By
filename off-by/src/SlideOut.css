@@ -1,14 +1,12 @@
 #flyoutMenu {
     width: 25vw;
     height: 100vh;
-
     background-color: #F4762D;
-   
     position: fixed;
     top: 0;
     left: 0;
     transition: transform .5s
-                cubic-bezier(0, .52, 0, 1);
+        cubic-bezier(0, .52, 0, 1);
     overflow: scroll;
     z-index: 1000;
     align-items: center;

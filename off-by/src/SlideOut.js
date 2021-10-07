@@ -12,15 +12,13 @@ class SlideOut extends Component {
         }
      
         return (
-
           <div id="flyoutMenu"
-               onMouseDown={this.props.handleSlide} 
-               className={visibility}>
-
-                <LeaderBoard  score = {1000}/>
-                <div id="stats">
-                < Stats id="stats" />
-      </div>
+            onMouseDown={this.props.handleSlide} 
+            className={visibility}>
+            <LeaderBoard  score = {1000}/>
+            <div id="stats">
+              < Stats id="stats" />
+            </div>
           </div>
         );
     }

@@ -17,7 +17,6 @@
 
 }
 
-
 #question-section {
   width: 100%;
   align-items: center;
@@ -88,7 +87,6 @@
 
 #answer{
   grid-area: answer;
-
 }
 
 #show-answer {
