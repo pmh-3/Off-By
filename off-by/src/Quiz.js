@@ -1,5 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+import React, {useState, useEffect} from 'react';
+import {BrowserRouter as Router, Route, Redirect, useHistory} from "react-router-dom";
 import Slider from './InputSlider';
 import Answer from './Answer';
 import Timer from './Timer';
@@ -16,6 +16,7 @@ function Quiz({handleScore}) {
 	const [scores, setScores] = useState([100])
 	const [guess, setGuess] = useState(0);
 	const [offBy, setOffBy] = useState(0);
+	const history = useHistory();
 
 	const quizLength = 10;
 
@@ -24,7 +25,6 @@ function Quiz({handleScore}) {
 			callBackendAPI().then((res) =>{
 				populate(res);
 			});
-			addPlay();
 
 	}, [])
 
@@ -41,9 +41,10 @@ function Quiz({handleScore}) {
 	}
 
 	const populate = (res) =>{
+		addPlay();
 		for(let number =0; number < 10; number++){
 			setQuestions(qStore =>[
-				... qStore, {
+				...qStore, {
 				question: {
 					num: number,
 					id: res.Q[number].ID, 
@@ -63,7 +64,7 @@ function Quiz({handleScore}) {
 				}]
 			);
 
-			if(number == 0) {
+			if(number === 0) {
 				setQuestion(
 					{
 						num: number,
@@ -87,7 +88,7 @@ function Quiz({handleScore}) {
 
 
 	useEffect(()=>{
-			questionStore.filter(q => (q.question.num == currentQuestion))
+			questionStore.filter(q => (q.question.num === currentQuestion))
 			.map(q => setQuestion(q.question));		
 	})
 
@@ -111,7 +112,8 @@ function Quiz({handleScore}) {
 
 	const calcScore = () => {
 		const average = scores.reduce((sum, curr) => sum + Number(curr),0) / scores.length;
-		handleScore(average)
+		handleScore(average);
+		setShowScore(true);
 	}
 
 	const handleGuessChange = (guess) => {
@@ -128,14 +130,22 @@ function Quiz({handleScore}) {
 		const nextQuestion = currentQuestion + 1;
 		
 		setShowAnswer(false);
-		if (nextQuestion < quizLength-1) {
+		if (nextQuestion <= quizLength-1) {
 			setCurrentQuestion(nextQuestion);
 						
 		} else {		
 			calcScore();
-			setShowScore(true);
+
 		}
 	}
+
+	const goToScore = () =>{
+		if(showScore){
+			history.push("/Score");
+		}
+	}
+
+	goToScore();
 		
 	const handleAnswerOptionClick = () => {
 		calcOffBy()

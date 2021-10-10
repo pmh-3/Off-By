@@ -9,7 +9,6 @@ WORKDIR /usr/app
 #install Dependencies
 COPY package*.json ./
 
-RUN npm install -qyg nodemon@2.0.7
 RUN npm install -qy
 
 #copy app source code

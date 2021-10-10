@@ -10,7 +10,7 @@ function Timer({timesUp}) {
             setSeconds('Times Up!');
             timesUp();
         }
-    });
+    },[seconds, timesUp]);
 
     return (
         <div>

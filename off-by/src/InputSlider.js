@@ -55,14 +55,14 @@ function InputSlider({min, max, units, step, handleGuessChange}) {
 
   useEffect(() =>{
     setValue(min);
-    handleGuessChange(min);
 
   },[min])
 
-  const handleSliderChange = (newValue) => {
+  const handleSliderChange = (event, newValue) => {
     setValue(newValue);
     handleGuessChange(newValue);
   };
+
 
   const handleInputChange = (event) => {
       setValue(event.target.value === '' ? '' : Number(event.target.value));

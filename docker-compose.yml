@@ -1,19 +1,20 @@
 version: '3'
+
 services:
 
   client:
     build:
-      context: ./client
+      context: ./off-by
       dockerfile: Dockerfile
     image: myapp-client
     command: npm start
     volumes:
-      - ./client/src:/usr/app/src
-      - ./client/public:/usr/app/public
+      - ./off-by/src:/usr/app/src
     depends_on:
       - server
     ports:
       - 3000:3000
+
     networks:
       - app-network
     environment:
@@ -21,6 +22,9 @@ services:
       - CHOKIDAR_USEPOLLING=true
     stdin_open: true
     tty: true
+
+    links:
+      - "server:be"
 
   server:
     build: 
@@ -31,30 +35,45 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - db
+      - my-db
     environment:
-      - DB_URL=obdb://db:27017
-      - CLIENT=http://localhost:3000
+      - MYSQL_HOST_IP= 'my-db'
+      - DB_HOST='my-db'
+      - DB_USER='admin'
+      - DB_PASSWORD='otters'
+      - DB_NAME='obdb'
+      - DB_PORT='3306'
+      
     networks:
       - app-network
-    command: /usr/app/node_modules/.bin/nodemon -L src/index.js
 
-  db:
-    image: myslq:
+  my-db:
+    image: mysql/mysql-server
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password --local-infile=ON
+    environment:
+      MYSQL_DATABASE: obdb
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'otters'
+      MYSQL_ROOT_PASSWORD: 'otters'
+      MYSQL_HOST: localhost
+
     volumes:
-      - mysql-data:/data/db
+      - data-volume:/data/db
     ports:
-      - 27017:27017
+      - '3306:3306'
     networks:
       - app-network
-
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
 
 networks: 
   app-network:
     driver: bridge
   
 volumes: 
-  mysql-data:
-    driver: local
-
-
+    data-volume:
+    node_modules:
+    web-root:
+      driver: local
