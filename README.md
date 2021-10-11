@@ -14,8 +14,8 @@ Steps to completion
 3. Add button events to load different page. Done
 4. Build game mechanic skeleton using react. Done
 5. Connect to MySQL. Done
-6. Refine and add functionality
-7. Run app in docker container
+6. Refine and add functionality. Done
+7. Run app in docker container. Done
 8. Migrate to cloud
 
 My code intentionally has no license to preserve copyright protection.
