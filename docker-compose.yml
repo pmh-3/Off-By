@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
     command: npm start
     volumes:
-      - ./off-by/src:/usr/app/src
+      - ${WEBAPP_STORAGE_HOME}/site/wwwroot:/usr/app/src
     depends_on:
       - server
     ports:
@@ -30,7 +30,7 @@ services:
       context: ./server
       dockerfile: Dockerfile
     volumes:
-      - ./server/src:/usr/app/src
+      - ${WEBAPP_STORAGE_HOME}/site/wwwroot:/usr/app/src
     ports:
       - "5000:5000"
     depends_on:
@@ -58,7 +58,7 @@ services:
       MYSQL_HOST: localhost
 
     volumes:
-      - data-volume:/data/db
+      - ${WEBAPP_STORAGE_HOME}/site/wwwroot:/data/db
     ports:
       - '3306:3306'
     networks:
@@ -70,9 +70,4 @@ services:
 networks: 
   app-network:
     driver: bridge
-  
-volumes: 
-    data-volume:
-    node_modules:
-    web-root:
-      driver: local
+
