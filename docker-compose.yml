@@ -2,18 +2,17 @@ version: '3'
 
 services:
 
-  client:
+  web:
     build:
       context: ./off-by
       dockerfile: Dockerfile
-    image: myapp-client
     command: npm start
     volumes:
       - ./off-by/src:/usr/app/src
     depends_on:
       - server
     ports:
-      - 3000:3000
+      - "80:80"
 
     networks:
       - app-network
