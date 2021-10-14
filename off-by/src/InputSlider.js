@@ -55,6 +55,7 @@ function InputSlider({min, max, units, step, handleGuessChange}) {
 
   useEffect(() =>{
     setValue(min);
+    handleGuessChange(min);
 
   },[min])
 

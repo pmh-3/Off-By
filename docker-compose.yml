@@ -7,8 +7,7 @@ services:
       context: ./off-by
       dockerfile: Dockerfile
     command: npm start
-    volumes:
-      - ${WEBAPP_STORAGE_HOME}/site/wwwroot:/usr/app/src
+
     depends_on:
       - server
     ports:
@@ -29,8 +28,7 @@ services:
     build: 
       context: ./server
       dockerfile: Dockerfile
-    volumes:
-      - ${WEBAPP_STORAGE_HOME}/site/wwwroot:/usr/app/src
+
     ports:
       - "5000:5000"
     depends_on:
@@ -57,8 +55,6 @@ services:
       MYSQL_ROOT_PASSWORD: 'otters'
       MYSQL_HOST: localhost
 
-    volumes:
-      - ${WEBAPP_STORAGE_HOME}/site/wwwroot:/data/db
     ports:
       - '3306:3306'
     networks:
