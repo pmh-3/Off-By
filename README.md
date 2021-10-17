@@ -1,4 +1,7 @@
 # Off-By
+
+www.offby.io
+
 Numbers based trivia game where you'll never be wrong, only off by X%
 
 Website hosted on Raspberry Pi running Nginx
@@ -16,7 +19,7 @@ Steps to completion
 5. Connect to MySQL. Done
 6. Refine and add functionality. Done
 7. Run app in docker container. Done
-8. Migrate to cloud
+8. Deploy app on server. Done
 
 My code intentionally has no license to preserve copyright protection.
 Off By was exclusivly created by Peter Heitkemper.
