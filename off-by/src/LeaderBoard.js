@@ -23,11 +23,11 @@ function LeaderBoard({score, setLeader}) {
     const init = ()=>{
 
             getLB().then(res =>{
-                for(let i=0; i<21;i++){
+                for(let i=0; i<20;i++){
                 setLB(l =>[... l,{
                     Name: res.L[i].Name,
                     Score: res.L[i].Score,
-                    Rank: i
+                    Rank: i+1
                 }])
             }    
          } ).catch(err => console.log(err));
@@ -67,6 +67,7 @@ function LeaderBoard({score, setLeader}) {
         <div className= "leaderboard">
                 <div id= 'lb-title'>Leaderboard</div>
                 <ul class="no-bullets">
+                    <div>0. Waffler: 0%</div>
                     {LB.map((l) => (
                         <li key={l.Rank}>{l.Rank}. {l.Name}: {l.Score}%</li>
                     ))}

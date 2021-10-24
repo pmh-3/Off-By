@@ -13,7 +13,7 @@ function Quiz({handleScore}) {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [showAnswer, setShowAnswer] = useState(false);
-	const [scores, setScores] = useState([100])
+	const [scores, setScores] = useState([]);
 	const [guess, setGuess] = useState(0);
 	const [offBy, setOffBy] = useState(0);
 	const history = useHistory();
@@ -41,7 +41,7 @@ function Quiz({handleScore}) {
 	}
 
 	const populate = (res) =>{
-		addPlay();
+		//addPlay();
 		for(let number =0; number < 10; number++){
 			setQuestions(qStore =>[
 				...qStore, {

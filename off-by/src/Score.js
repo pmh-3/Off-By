@@ -49,14 +49,8 @@ function Score({score, resetScore}) {
   }
 
   const copyLink = () =>{
-    var copyText = "offby.io";
+    setCopied('share www.offby.io');  
 
-    if (isMobile){
-      setCopied('share offby.io');  
-    }else{
-      navigator.clipboard.writeText(copyText);
-      setCopied('Link Copied');
-    }
   }
 
   const addLeader = async (e) => {
