@@ -11,8 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 
 'use strict';
 
-const dbpool = require('mysql').createPool({
-    connectionLimit: 100,
+var dbpool = require('mysql').createPool({
+    connectionLimit: 10,
     acquireTimeout: 30000,
     waitForConnections: true,
     database: 'obdb',
@@ -22,20 +22,53 @@ const dbpool = require('mysql').createPool({
     user: 'admin',
 });
 
+// app.post('/addLeader', function(req, res){
+//     var Name = req.body.name.name;
+//     var Score = req.body.score.score;
+//     console.log(req.body);
+//     //console.log("adding leader");
+
+//     dbpool.getConnection(function(err, connection){
+//             if(err){
+//                 connection.release();
+//                 console.log(' Error getting mysql_pool connection: ' + err);
+//                 throw err;
+//             }
+
+//         var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES ('"+Name+"','"+Score+"');"
+//         connection.query(addLeader, function (err2, result) {
+//             if (err2){
+//                 console.log(err.code);
+//             }else{
+//                 console.log("Leader Added");
+//             }
+//             console.log(' mysql_pool.release()');
+//             connection.release();
+//         });
+//     });
+// });
+
+
+
+
 
 const attemptConnection = () => 
     dbpool.getConnection((err, con)=>{
         if(err){
             console.log('Error connecting, retrying in 1 second');
+            if(con) con.destroy();
             setTimeout(attemptConnection,1000);
+            return; 
         }else{
             console.log("Connected!");
 
             var sql = "DROP TABLE IF EXISTS questions ";
             con.query(sql, function (err, result) {
+              //  con.release();
                 if (err){
                     console.log('Error connecting, retrying in 1 second');
                     console.log(err.code);
+                    if(con) con.destroy();
                     setTimeout(attemptConnection,1000);
                     return;
                 }
@@ -44,9 +77,11 @@ const attemptConnection = () =>
 
             var createtbl = "CREATE TABLE questions (`ID` INT NOT NULL AUTO_INCREMENT, `Question` LONGTEXT NULL,`Answer` FLOAT NULL,`Min` INT NULL, `Max` INT NULL,`Units` VARCHAR(50) NULL,`AnswerText` LONGTEXT NULL,`Blurb` LONGTEXT NULL,`Link` LONGTEXT NULL, `Image` LONGTEXT NULL, `By` LONGTEXT NULL,`Step` FLOAT NULL,`Category` VARCHAR(100) NULL, PRIMARY KEY (`ID`));"
             con.query(createtbl, function (err, result) {
+              //  con.release();
                 if (err){
                     console.log('Error connecting, retrying in 1 second');
                     console.log(err.code);
+                    if(con) con.destroy();
                     setTimeout(attemptConnection,1000);
                     return;
                 }
@@ -55,14 +90,15 @@ const attemptConnection = () =>
         
             var loadData = "LOAD DATA LOCAL INFILE 'questions.csv' INTO TABLE questions FIELDS TERMINATED BY '~' LINES TERMINATED BY '\n' IGNORE 1 ROWS;"
             con.query(loadData, function (err, result) {
+                //con.release();
                 if (err){
                     console.log('Error connecting, retrying in 1 second');
                     console.log(err.code);
+                    if(con) con.destroy();
                     setTimeout(attemptConnection,1000);
                     return;
                 }
                 console.log("data loaded");
-                
             });
     
             // var sql = "DROP TABLE IF EXISTS leaderboard";
@@ -73,9 +109,11 @@ const attemptConnection = () =>
 
             createLB = "CREATE TABLE IF NOT EXISTS leaderboard (`ID` INT NOT NULL AUTO_INCREMENT,`Name` VARCHAR(100) NOT NULL, `Score` FLOAT NULL, PRIMARY KEY (`ID`));"
             con.query(createLB, function (err, result) {
+                //con.release();
                 if (err){
                     console.log('Error connecting, retrying in 1 second');
                     console.log(err.code);
+                    if(con) con.destroy();
                     setTimeout(attemptConnection,1000);
                     return;
                 }
@@ -85,13 +123,16 @@ const attemptConnection = () =>
             for(let i = 0; i<20; i++){
                 var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES ('_____','100');"
                 con.query(addLeader, function (err, result) {
+                  //  con.release();
                     if (err){
                         console.log('Error connecting, retrying in 1 second');
                         console.log(err.code);
+                        if(con) con.destroy();
                         setTimeout(attemptConnection,1000);
                         return;
                     }
                     console.log("Leader Added");
+                    
                 });
             }    
 
@@ -115,136 +156,154 @@ const attemptConnection = () =>
             console.log('new count: ', newCount);
 
         });
+      //  con.release();
     }
+
 });
 //attemptConnection();
 
-const attemptLB = () => 
-    dbpool.getConnection((err, con)=>{
-        if(err){
-            console.log('Error connecting, retrying in 1 second');
-            console.log(err.code);
-            setTimeout(attemptLB,1000);
-        }else{
-            app.post('/addLeader', (req, res) => {
-                var Name = req.body.name.name;
-                var Score = req.body.score.score;
-                console.log(req.body);
-                //console.log(req.body.score.score);
+const attemptLB = () => {
+
+    app.post('/addLeader', (req, res) => {
+        var Name = req.body.name.name;
+        var Score = req.body.score.score;
+        console.log(req.body);
+        //console.log(req.body.score.score);
+
+        var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES ('"+Name+"','"+Score+"');"
+        dbpool.query(addLeader, function (err, result) {
+            //con.release();
+            if (err){
+                console.log('Error connecting, retrying in 1 second');
+                console.log(err.code);
+            // if(con) con.destroy();
+                setTimeout(attemptLB,1000);
+                return;
+            }else{
+                console.log("Leader Added");
+            }
+            
+        });
+    });
+
+
+    app.get('/getLeaderBoard', (req, res) => {
+        console.log("getting LB");
+
+        /* //Unable to get count of records in column
+        var count = 'SELECT COUNT(ID) AS total FROM leaderboard;'
+        con.query(count, function (err, result) {
+            if (err) throw err;
+            var coloncount = result;
+            leaderCount = coloncount.toString().replace(':', ' ');
+            leaderCount = parseInt(leaderCount);
+
+            if(leaderCount > 20){
+                leaderCount = 20;
+            }
+            console.count("leadercount", result);
+        });
+        */
+
+        var sort = 'SELECT * FROM leaderboard ORDER BY Score;'
+        dbpool.query(sort, function (err, result) {
+           // con.release();
+            if (err){
+                console.log('Error connecting, retrying in 1 second');
+                console.log(err.code);
+                //if(con) con.destroy();
+                setTimeout(attemptLB,1000);
+                return;
+            }
+        });
+
+        var getLeaders = 'SELECT * FROM leaderboard ORDER BY Score LIMIT 20;'
+        var LBarr = [];
+        var LB = [];
+       
+        dbpool.query(getLeaders, function (err, result) {   
+           // con.release();
+            if (err){
+                console.log('Error connecting, retrying in 1 second');
+                console.log(err.code);
+              //  if(con) con.destroy();
+                setTimeout(attemptLB,1000);
+                return;
+            }
         
-                var addLeader ="INSERT INTO leaderboard (Name, Score) VALUES ('"+Name+"','"+Score+"');"
-                con.query(addLeader, function (err, result) {
-                    if (err){
-                        console.log('Error connecting, retrying in 1 second');
-                        console.log(err.code);
-                        setTimeout(attemptLB,1000);
-                        return;
-                    }else{
-                        console.log("Leader Added");
-                    }
-                    
-                });
+            for(var i of result){
+                LBarr.push(i)
+            }
+    
+            const leaders = Object.values(JSON.parse(JSON.stringify(LBarr)));
+            leaders.forEach((v) => LB.push(v));      
+            console.log(LB);
+    
+            res.send(
+                {
+                   L:[
+                       { Name:LB[0].Name, Score:LB[0].Score,Rank:0},
+                       { Name:LB[1].Name, Score:LB[1].Score,Rank:1},
+                       { Name:LB[2].Name, Score:LB[2].Score,Rank:2},
+                       { Name:LB[3].Name, Score:LB[3].Score,Rank:3},
+                       { Name:LB[4].Name, Score:LB[4].Score,Rank:4},
+                       { Name:LB[5].Name, Score:LB[5].Score,Rank:5},
+                       { Name:LB[6].Name, Score:LB[6].Score,Rank:6},
+                       { Name:LB[7].Name, Score:LB[7].Score,Rank:7},
+                       { Name:LB[8].Name, Score:LB[8].Score,Rank:8},
+                       { Name:LB[9].Name, Score:LB[9].Score,Rank:9},
+                       { Name:LB[10].Name, Score:LB[10].Score,Rank:10},
+                       { Name:LB[11].Name, Score:LB[11].Score,Rank:11},
+                       { Name:LB[12].Name, Score:LB[12].Score,Rank:12},
+                       { Name:LB[13].Name, Score:LB[13].Score,Rank:13},
+                       { Name:LB[14].Name, Score:LB[14].Score,Rank:14},
+                       { Name:LB[15].Name, Score:LB[15].Score,Rank:15},
+                       { Name:LB[16].Name, Score:LB[16].Score,Rank:16},
+                       { Name:LB[17].Name, Score:LB[17].Score,Rank:17},
+                       { Name:LB[18].Name, Score:LB[18].Score,Rank:18},
+                       { Name:LB[19].Name, Score:LB[19].Score,Rank:19},
+                   ]      
+                }
+            );
+              
+        }); 
+    }); 
+}
+
+    // dbpool.getConnection((err, con)=>{
+    //     if(err){
+    //         console.log('Error connecting, retrying in 1 second');
+    //         console.log(err.code);
+    //      //   if(con) con.destroy();
+    //         setTimeout(attemptLB,1000);
+    //         return;
+    //     }else{
+          
         
-                res.send(
-                `I received your POST request. This is what you sent me: ${req.body.name}`,
-                );
-            });
+    //             res.send(
+    //             `I received your POST request. This is what you sent me: ${req.body.name}`,
+    //             );
+    //             }
+    //         });
              
-            app.get('/getLeaderBoard', (req, res) => {
-                console.log("getting LB");
-        
-                /* //Unable to get count of records in column
-                var count = 'SELECT COUNT(ID) AS total FROM leaderboard;'
-                con.query(count, function (err, result) {
-                    if (err) throw err;
-                    var coloncount = result;
-                    leaderCount = coloncount.toString().replace(':', ' ');
-                    leaderCount = parseInt(leaderCount);
-        
-                    if(leaderCount > 20){
-                        leaderCount = 20;
-                    }
-                    console.count("leadercount", result);
-                });
-                */
-        
-                var sort = 'SELECT * FROM leaderboard ORDER BY Score;'
-                con.query(sort, function (err, result) {
-                    if (err){
-                        console.log('Error connecting, retrying in 1 second');
-                        console.log(err.code);
-                        setTimeout(attemptLB,1000);
-                        return;
-                    }
-                });
-        
-                var getLeaders = 'SELECT * FROM leaderboard ORDER BY Score LIMIT 20;'
-                var LBarr = [];
-                var LB = [];
-               
-                con.query(getLeaders, function (err, result) {   
-                    if (err){
-                        console.log('Error connecting, retrying in 1 second');
-                        console.log(err.code);
-                        setTimeout(attemptLB,1000);
-                        return;
-                    }
-                
-                    for(var i of result){
-                        LBarr.push(i)
-                    }
-            
-                    const leaders = Object.values(JSON.parse(JSON.stringify(LBarr)));
-                    leaders.forEach((v) => LB.push(v));      
-                    console.log(LB);
-            
-                    res.send(
-                        {
-                           L:[
-                               { Name:LB[0].Name, Score:LB[0].Score,Rank:0},
-                               { Name:LB[1].Name, Score:LB[1].Score,Rank:1},
-                               { Name:LB[2].Name, Score:LB[2].Score,Rank:2},
-                               { Name:LB[3].Name, Score:LB[3].Score,Rank:3},
-                               { Name:LB[4].Name, Score:LB[4].Score,Rank:4},
-                               { Name:LB[5].Name, Score:LB[5].Score,Rank:5},
-                               { Name:LB[6].Name, Score:LB[6].Score,Rank:6},
-                               { Name:LB[7].Name, Score:LB[7].Score,Rank:7},
-                               { Name:LB[8].Name, Score:LB[8].Score,Rank:8},
-                               { Name:LB[9].Name, Score:LB[9].Score,Rank:9},
-                               { Name:LB[10].Name, Score:LB[10].Score,Rank:10},
-                               { Name:LB[11].Name, Score:LB[11].Score,Rank:11},
-                               { Name:LB[12].Name, Score:LB[12].Score,Rank:12},
-                               { Name:LB[13].Name, Score:LB[13].Score,Rank:13},
-                               { Name:LB[14].Name, Score:LB[14].Score,Rank:14},
-                               { Name:LB[15].Name, Score:LB[15].Score,Rank:15},
-                               { Name:LB[16].Name, Score:LB[16].Score,Rank:16},
-                               { Name:LB[17].Name, Score:LB[17].Score,Rank:17},
-                               { Name:LB[18].Name, Score:LB[18].Score,Rank:18},
-                               { Name:LB[19].Name, Score:LB[19].Score,Rank:19},
-                           ]      
-                        }
-                    );
-                      
-                }); 
-            }); 
-        }
-    })
+           
+    //     }
+
 //attemptLB();
 
 const attemptQuestions = () =>
-    dbpool.getConnection((err,con)=>{
-        if (err){
-            console.log('Error connecting, retrying in 1 second');
-            console.log(err.code);
-            setTimeout(attemptQuestions,1000);
-            return;
-        }
+    // dbpool.getConnection((err,con)=>{
+    //     if (err){
+    //         console.log('Error connecting, retrying in 1 second');
+    //         console.log(err.code);
+    //         if(con) con.destroy();
+    //         setTimeout(attemptQuestions,1000);
+    //         return;
+    //     }
             
-        var questionTotal = 26;
-
         app.get('/getQuestions', (req, res) => {
             var sentQs = [];
-    
+            var questionTotal = 26;
                 /*
                 async function example1 () {
                     const mysql = require('mysql2/promise');
@@ -272,7 +331,8 @@ const attemptQuestions = () =>
                 console.log(qNum);
     
                 var sql = 'SELECT * FROM questions WHERE ID in (' + mysql.escape(qNum[0]) + ','+ mysql.escape(qNum[1])+ ','+ mysql.escape(qNum[2])+ ','+ mysql.escape(qNum[3])+ ','+ mysql.escape(qNum[4])+ ','+ mysql.escape(qNum[5])+ ','+ mysql.escape(qNum[6])+ ','+ mysql.escape(qNum[7])+ ','+ mysql.escape(qNum[8])+ ','+ mysql.escape(qNum[9])+ ')';
-                con.query(sql, function (err, result) {  
+                dbpool.query(sql, function (err, result) {  
+                    //con.release();
                     if (err){
                         console.log('Error connecting, retrying in 1 second');
                         console.log(err.code);
@@ -446,15 +506,16 @@ const attemptQuestions = () =>
                     });
     
                 });
-        }); 
-})
+              //  con.release();
+       // }); 
+    });
 //attemptQuestions();
 
 
 //INITIALIZE
 attemptConnection(); 
-app.listen(port, () => console.log(`Listening on port ${port}`)); 
-//while(TRUE){
-    attemptLB();
-    attemptQuestions();
+attemptLB();
+attemptQuestions();
 //}
+app.listen(port, () => console.log(`Listening on port ${port}`)); 
+//while(TRUE)
